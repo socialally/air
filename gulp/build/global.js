@@ -4,7 +4,24 @@ module.exports = {
   air: air,
 }
 
-// TODO: include all system plugins in this distribution
+air.plugin([
+  require('append'),
+  require('attr'),
+  require('children'),
+  require('class'),
+  require('clone'),
+  require('create'),
+  require('css'),
+  require('data'),
+  require('dimension'),
+  require('empty'),
+  require('event'),
+  require('first'),
+  require('html'),
+  require('last'),
+  require('remove'),
+  require('text'),
+])
 
 if(window) {
   window.$ = air;

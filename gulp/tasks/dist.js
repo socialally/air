@@ -7,6 +7,7 @@ var gulp = require('gulp')
   , globalmin = merge(true, config.dist.global);
 
 globalmin.minify = true;
+globalmin.source = globalmin.source.replace(/\.js$/, '.min.js');
 
 gulp.task('dist-global-min',
   bundle.bind(null, globalmin));

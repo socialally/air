@@ -7,21 +7,26 @@ var gulp = require('gulp')
   , source = require('vinyl-source-stream')
   , buffer = require('vinyl-buffer');
 
+function create(opts) {
+  var b = browserify(opts.main, opts);
+  b.transform('brfs');
+  return b;
+}
+
 function bundle(opts, cb) {
-  var bundler = browserify(opts.main, opts);
-  var useSourceMap = opts.map !== false;
+  var bundler = create(opts);
   return bundler.bundle()
     .on('error', gutil.log)
     .pipe(source(opts.source))
     .pipe(buffer())
     // loads map from browserify file
-    .pipe(useSourceMap ? sourcemaps.init({loadMaps: true}) : gutil.noop())
+    .pipe(opts.map ? sourcemaps.init({loadMaps: true}) : gutil.noop())
     // uglify compiled file
     .pipe(opts.minify ? uglify() : gutil.noop())
     // report size before writing source map.
     .pipe(size({title:'js'}))
     // writes .map file
-    .pipe(useSourceMap ? sourcemaps.write(opts.map) : gutil.noop())
+    .pipe(opts.map ? sourcemaps.write(opts.map) : gutil.noop())
     .pipe(gulp.dest(opts.dest));
 }
 
