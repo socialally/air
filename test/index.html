@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../node_modules/mocha/mocha.css" />
     <style>
-        #fixture {
+        #fixture, #mock {
           position: absolute;
           left: -2000px;
           top: -2000px;
@@ -16,6 +16,9 @@
   <body>
     <div id="mocha"></div>
     <div id="fixture"></div>
+    <div id="mock">
+      <div class="append"></div>
+    </div>
     <script src="../node_modules/mocha/mocha.js"></script>
     <script>
       mocha.setup({

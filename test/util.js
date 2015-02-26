@@ -3,12 +3,12 @@ var id = 'fixture'
 
 function before(markup) {
   var el = document.querySelector(selector);
-  e.innerHTML = markup || '';
+  el.innerHTML = markup || '';
 }
 
 function after(done) {
   var el = document.querySelector(selector);
-  e.innerHTML = '';
+  el.innerHTML = '';
   done();
 }
 
