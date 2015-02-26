@@ -1,4 +1,4 @@
-var air = require('./lib/air');
+var air = require('air');
 
 module.exports = {
   air: air,

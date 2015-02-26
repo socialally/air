@@ -27,7 +27,7 @@ var config = {
   },
   dist: {
     global: {
-      main: './global.js',
+      main: './gulp/build/global.js',
       options: {
         paths: ['./lib'],
         map: false,
