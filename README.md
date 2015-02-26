@@ -97,7 +97,7 @@ The `context` argument is only applicable when a selector `String` argument is u
 
 When an existing `Air` instance is passed the underlying array is copied but the elements are not cloned.
 
-```
+```javascript
 $('body');                                  // String (selector)
 $(document.querySelector('body'));          // Element
 $(document.getElementById('id'));           // Element
