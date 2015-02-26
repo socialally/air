@@ -9,12 +9,19 @@
   <body>
     <div id="mocha"></div>
     <script src="../node_modules/mocha/mocha.js"></script>
-    <script>mocha.setup('bdd')</script>
+    <script>
+      mocha.setup({
+        ui: 'bdd',
+        ignoreLeaks: false,
+        asyncOnly: true
+      });
+    </script>
     <script src="spec.js"></script>
     <script>
       if(window.mochaPhantomJS) {
         mochaPhantomJS.run();
       }else{
+        mocha.checkLeaks();
         mocha.run();
       }
     </script>
