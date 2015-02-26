@@ -5,4 +5,5 @@
 [phantomjs]: http://phantomjs.org
 [browserify]: http://browserify.org
 [eslint]: http://eslint.org
+[blink]: http://www.chromium.org/blink
 [mdp]: https://github.com/freeformsystems/mdp
