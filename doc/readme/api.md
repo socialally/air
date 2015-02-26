@@ -8,11 +8,11 @@ Example code assumes that `air` has been aliased to `$`.
 
 Core functionality is the main method, the class function and the pre-defined properties and methods on the class, see [air.js](/lib/air.js).
 
-### air(selector, [context])
+#### air(selector, [context])
 
 Returns an `Air` instance.
 
-### new Air(selector, [context])
+#### new Air(selector, [context])
 
 Class constructor.
 
@@ -31,18 +31,18 @@ $([document.getElementById('id')]);         // Array
 $($('body'));                               // Air
 ```
 
-#### .dom
+##### .dom
 
 The underlying array of elements.
 
-#### .length
+##### .length
 
 The number of encapsulated elements.
 
-#### get([index])
+##### get([index])
 
 Get the element at the specified index, if no arguments are passed the `dom` array is returned.
 
-#### each(iterator)
+##### each(iterator)
 
 Iterate the underlying elements, alias for `dom.forEach`.
