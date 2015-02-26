@@ -36,10 +36,34 @@
     "node >= 0.10.11"
   ],
   "scripts": {
+    "docs": "npm run readme",
+    "readme": "mdp --force -v",
     "clean": "gulp clean",
     "spec": "gulp spec",
     "instrument": "istanbul instrument --output instrument lib",
     "cover": "npm run instrument && gulp cover",
     "test": "gulp test"
+  },
+  "mdp": {
+    "title": "Air",
+    "pedantic": true,
+    "include": "doc/readme",
+    "require": "lib",
+    "links": "links.md",
+    "toc": "Table of Contents",
+    "base": "https://github.com/socialally/air",
+    "partial": [
+      {
+        "inc": [
+          "introduction.md",
+          "design.md",
+          "usage.md",
+          "install.md",
+          "api.md",
+          "developer.md",
+          "license.md"
+        ]
+      }
+    ]
   }
 }
