@@ -1,5 +1,11 @@
 var config = {
-  clean: ['./instrument', './coverage', './test/spec.*'],
+  clean: [
+    './instrument',
+    './coverage',
+    './test/spec.*',
+    './dist/*.js',
+    './dist/*.js.map',
+  ],
   spec: {
     main: './test/spec/index.js',
     options: {
@@ -20,12 +26,14 @@ var config = {
     }
   },
   dist: {
-    main: './bundle.js',
-    options: {
-      paths: ['./lib'],
-      map: false,
-      dest: './dist',
-      source: 'air.js'
+    global: {
+      main: './global.js',
+      options: {
+        paths: ['./lib'],
+        map: './',
+        dest: './dist',
+        source: 'air.global.js'
+      }
     }
   },
   lint: {
