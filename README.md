@@ -102,7 +102,7 @@ $('body');                                  // String (selector)
 $(document.querySelector('body'));          // Element
 $(document.getElementById('id'));           // Element
 $(document.querySelectorAll('div'));        // NodeList
-$([document.getElementById('div')]);        // Array
+$([document.getElementById('id')]);         // Array
 $($('body'));                               // Air
 ```
 
