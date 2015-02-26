@@ -4,7 +4,7 @@ Some features available in [jquery][] that there are no plans to implement.
 
 ### Array Access
 
-This library does not allow accessing the underlying DOM elements using array bracket notation `[]`, if you wish to access the encapsulated DOM elements use the core methods.
+Accessing the underlying DOM elements using array bracket notation `[]` is not available, if you wish to access the encapsulated elements use the [core methods](#core).
 
 ### HTML Parsing
 

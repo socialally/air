@@ -75,11 +75,13 @@ In the meantime you can depend upon the git repository:
 
 ## API
 
-The core function (`air`) wraps a set of elements in a class that may be decorated by plugins.
+The main function (`air`) wraps a set of elements in a class that may be decorated by plugins.
 
 Example code assumes that `air` has been aliased to `$`.
 
 ### Core
+
+Core functionality is the main method, the class function and the pre-defined properties and methods on the class.
 
 ### air(selector, [context])
 
@@ -87,7 +89,7 @@ Returns an `Air` instance.
 
 ### new Air(selector, [context])
 
-The class constructor.
+Class constructor.
 
 Accepts a selector `String`, `Element`, `NodeList`, `Air` instance or array of elements.
 
@@ -126,7 +128,7 @@ Some features available in [jquery](http://jquery.com) that there are no plans t
 
 ### Array Access
 
-This library does not allow accessing the underlying DOM elements using array bracket notation `[]`, if you wish to access the encapsulated DOM elements use the core methods.
+Accessing the underlying DOM elements using array bracket notation `[]` is not available, if you wish to access the encapsulated elements use the [core methods](#core).
 
 ### HTML Parsing
 

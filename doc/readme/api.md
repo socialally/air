@@ -1,10 +1,12 @@
 ## API
 
-The core function (`air`) wraps a set of elements in a class that may be decorated by plugins.
+The main function (`air`) wraps a set of elements in a class that may be decorated by plugins.
 
 Example code assumes that `air` has been aliased to `$`.
 
 ### Core
+
+Core functionality is the main method, the class function and the pre-defined properties and methods on the class.
 
 ### air(selector, [context])
 
@@ -12,7 +14,7 @@ Returns an `Air` instance.
 
 ### new Air(selector, [context])
 
-The class constructor.
+Class constructor.
 
 Accepts a selector `String`, `Element`, `NodeList`, `Air` instance or array of elements.
 
