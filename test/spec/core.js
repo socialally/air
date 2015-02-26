@@ -3,6 +3,7 @@ var $ = require('air')
   , util = require('../util');
 
 describe('Core:', function() {
+
   it('should use selector string', function(done) {
     var el = $(util.selector);
     expect(el.length).to.eql(1);
@@ -43,4 +44,5 @@ describe('Core:', function() {
     expect(el.get(0)).to.be.instanceof(Element);
     done();
   });
+
 });
