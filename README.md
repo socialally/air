@@ -75,13 +75,13 @@ In the meantime you can depend upon the git repository:
 
 ## API
 
-The main function (`air`) wraps a set of elements in a class that may be decorated by plugins.
+The main function `air` wraps a set of elements in a class that may be decorated by plugins.
 
 Example code assumes that `air` has been aliased to `$`.
 
 ### Core
 
-Core functionality is the main method, the class function and the pre-defined properties and methods on the class, see [air.js](https://github.com/socialally/air/blob/master/air.js).
+Core functionality is the main method, the class function and the pre-defined properties and methods on the class, see [air.js](https://github.com/socialally/air/blob/master/lib/air.js).
 
 ### air(selector, [context])
 

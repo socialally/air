@@ -1,6 +1,6 @@
 ## API
 
-The main function (`air`) wraps a set of elements in a class that may be decorated by plugins.
+The main function `air` wraps a set of elements in a class that may be decorated by plugins.
 
 Example code assumes that `air` has been aliased to `$`.
 
