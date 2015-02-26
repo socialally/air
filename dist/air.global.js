@@ -68,7 +68,7 @@ if(window) {
    *  Get the number of wrapped DOM elements.
    */
   Object.defineProperty(
-    proto, 'length', {get: function getLength(){return this.dom.length}});
+    proto, 'length', {get: function(){return this.dom.length}});
 
   /**
    *  Get the DOM element at the specified index.
