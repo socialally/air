@@ -1,20 +1,19 @@
 var gulp = require('gulp')
   , phantomjs = require('gulp-mocha-phantomjs')
   , report = require('gulp-istanbul-report')
-  //, gutil = require('gulp-util');
+  , config = require('../config').cover;
 
-var coverageFile = './coverage/coverage.json';
-gulp.task('cover', ['coverspec'], function () {
+gulp.task('cover', ['cover-spec'], function () {
   gulp.src('test/index.html', {read: false})
     .pipe(phantomjs({
       phantomjs: {
         hooks: 'mocha-phantomjs-istanbul',
-        coverageFile: './coverage/coverage.json'
+        coverageFile: config.file
       },
       reporter: 'spec'
     }))
     .on('finish', function() {
-      gulp.src(coverageFile)
+      gulp.src(config.file)
         .pipe(report(
           {
             reporterOpts: {

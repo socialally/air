@@ -10,6 +10,7 @@ var config = {
     }
   },
   cover: {
+    file: './coverage/coverage.json',
     main: './test/spec/index.js',
     options: {
       paths: ['./instrument'],

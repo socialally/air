@@ -3,4 +3,4 @@ var gulp = require('gulp')
   , bundle = require('../bundle');
 
 gulp.task(
-  'coverspec', bundle.bind(null, config.cover.main, config.cover.options));
+  'cover-spec', bundle.bind(null, config.cover.main, config.cover.options));
