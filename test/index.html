@@ -5,9 +5,17 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../node_modules/mocha/mocha.css" />
+    <style>
+        #fixture {
+          position: absolute;
+          left: -2000px;
+          top: -2000px;
+        }
+    </style>
   </head>
   <body>
     <div id="mocha"></div>
+    <div id="fixture"></div>
     <script src="../node_modules/mocha/mocha.js"></script>
     <script>
       mocha.setup({
