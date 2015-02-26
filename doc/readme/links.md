@@ -9,4 +9,6 @@
 [requirejs]: http://requirejs.org
 [umd]: https://github.com/umdjs/umd
 [systemjs]: https://github.com/systemjs/systemjs
+[xss]: http://en.wikipedia.org/wiki/Cross-site_scripting
+[storage]: https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API
 [mdp]: https://github.com/freeformsystems/mdp
