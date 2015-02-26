@@ -30,7 +30,7 @@ var config = {
       main: './global.js',
       options: {
         paths: ['./lib'],
-        map: './',
+        map: false,
         dest: './dist',
         source: 'air.global.js'
       }
