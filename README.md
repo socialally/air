@@ -10,6 +10,7 @@ Table of Contents
     * [Test](#test)
     * [Cover](#cover)
     * [Lint](#lint)
+    * [Clean](#clean)
     * [Spec](#spec)
     * [Instrument](#instrument)
     * [Readme](#readme)
@@ -87,6 +88,14 @@ Run the source tree through [eslint](http://eslint.org):
 
 ```
 npm run lint
+```
+
+### Clean
+
+Remove generated files:
+
+```
+npm run clean
 ```
 
 ### Spec

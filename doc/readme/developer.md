@@ -28,6 +28,14 @@ Run the source tree through [eslint][]:
 npm run lint
 ```
 
+### Clean
+
+Remove generated files:
+
+```
+npm run clean
+```
+
 ### Spec
 
 Compile the test specifications:
