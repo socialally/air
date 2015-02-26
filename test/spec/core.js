@@ -3,8 +3,8 @@ var $ = require('air')
 
 describe('Core:', function() {
   it('should have dom array', function(done) {
-    var el = $('div');
-    //console.log(el.length);
+    var el = $('#mocha');
+    expect(el.length).to.eql(1);
     expect(el.dom).to.be.an('array');
     done();
   });
