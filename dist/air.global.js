@@ -49,7 +49,6 @@ if(window) {
    *  @param context The context element for a selector.
    */
   function Air(el, context) {
-    //window.a = 'b';
     context = context || document;
     this.dom = typeof el === 'string' ? context.querySelectorAll(el) : el;
     if(el instanceof Air) {
@@ -80,6 +79,14 @@ if(window) {
   }
 
   /**
+   *  Iterate the encapsulated DOM elements.
+   */
+  proto.each = function each(cb) {
+    this.dom.forEach(cb);
+    return this;
+  }
+
+  /**
    *  Main function, see the documentation for the `Air` class.
    */
   function air(el, context) {
@@ -93,10 +100,6 @@ if(window) {
    */
   function plugin(plugins) {
     var z;
-
-    /**
-     *  Plugin configuration options object passed to plugin methods.
-     */
     var opts = {
       main: air,
       clazz: Air,
@@ -133,11 +136,10 @@ if(window) {
    *  Append content to every matched element.
    */
   function append(el) {
-    var dom = main(el).dom;
     // matched parent elements
-    this.dom.forEach(function(node) {
+    this.each(function(node) {
       // matched elements to insert
-      dom.forEach(function(ins) {
+      main(el).each(function(ins) {
         // must clone otherwise only the last matched
         // element will receive the appended element
         node.appendChild(ins.cloneNode(true));
