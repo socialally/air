@@ -173,7 +173,7 @@ if(window) {
       }
       return this.dom[0].getAttribute(key);
     }else {
-      this.dom.forEach(function(el) {
+      this.each(function(el) {
         if(typeof key === 'object') {
           for(var z in key) {
             el.setAttribute(z, key[z]);
@@ -205,8 +205,7 @@ if(window) {
    */
   function children() {
     var arr = [];
-    this.dom.forEach(function(el) {
-      //console.log(el);
+    this.each(function(el) {
       arr = arr.concat(Array.prototype.slice.call(el.childNodes));
     });
     return main(arr);
@@ -236,7 +235,7 @@ if(window) {
       return this;
     }
     var classes = className.split(/\s+/);
-    this.dom.forEach(function(el) {
+    this.each(function(el) {
       var val = el.getAttribute(attr);
       var names = val ? val.split(/\s+/) : [];
       classes.forEach(function(nm) {
@@ -274,7 +273,7 @@ if(window) {
       return this;
     }
     var classes = className.split(/\s+/);
-    this.dom.forEach(function(el) {
+    this.each(function(el) {
       var val = el.getAttribute(attr);
       var names = val ? val.split(/\s+/) : [];
       names = names.filter(function(nm) {
@@ -303,7 +302,7 @@ if(window) {
    */
   function clone() {
     var arr = [];
-    this.dom.forEach(function(el) {
+    this.each(function(el) {
       arr.push(el.cloneNode(true));
     });
     return main(arr);
@@ -359,10 +358,10 @@ if(window) {
   'use strict'
 
   function css(props) {
-    if(!arguments.length && this.length) {
+    if(props === undefined && this.length) {
       return this.dom[0].style;
     }
-    this.dom.forEach(function(el) {
+    this.each(function(el) {
       el.style = el.style || {};
       for(var z in props) {
         el.style[z] = props[z];
@@ -452,7 +451,7 @@ if(window) {
    *  Remove the inner HTML from all matched elements.
    */
   function empty() {
-    this.dom.forEach(function(el) {
+    this.each(function(el) {
       el.innerHTML = '';
     });
     return this;
@@ -468,14 +467,14 @@ if(window) {
   'use strict'
 
   function on(nm, cb, capture) {
-    this.dom.forEach(function(el) {
+    this.each(function(el) {
       el.addEventListener(nm, cb, capture);
     });
     return this;
   }
 
   function off(nm, cb, capture) {
-    this.dom.forEach(function(el) {
+    this.each(function(el) {
       el.removeEventListener(nm, cb, capture);
     });
     return this;
@@ -519,7 +518,7 @@ if(window) {
     if(markup === undefined) {
       return this.dom[0].innerHTML;
     }
-    this.dom.forEach(function(el) {
+    this.each(function(el) {
       el.innerHTML = markup;
     });
     return this;
@@ -555,7 +554,7 @@ if(window) {
    *  Remove all matched elements.
    */
   function remove() {
-    this.dom.forEach(function(el) {
+    this.each(function(el) {
       if(el.parentNode) {
         el.parentNode.removeChild(el);
       }
@@ -573,12 +572,12 @@ if(window) {
   'use strict'
 
   function text(txt) {
-    if(!arguments.length && this.length) {
+    if(txt === undefined && this.length) {
       return this.dom[0].textContent !== undefined
         ? this.dom[0].textContent : this.dom[0].innerText;
     }
     txt = txt || '';
-    this.dom.forEach(function(el) {
+    this.each(function(el) {
       el.textContent = el.innerText = txt;
     });
     return this;
