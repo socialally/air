@@ -6,4 +6,7 @@
 [browserify]: http://browserify.org
 [eslint]: http://eslint.org
 [blink]: http://www.chromium.org/blink
+[requirejs]: http://requirejs.org
+[umd]: https://github.com/umdjs/umd
+[systemjs]: https://github.com/systemjs/systemjs
 [mdp]: https://github.com/freeformsystems/mdp
