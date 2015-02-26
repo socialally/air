@@ -36,6 +36,7 @@
     "node >= 0.10.11"
   ],
   "scripts": {
+    "clean": "gulp clean",
     "spec": "gulp spec",
     "instrument": "istanbul instrument --output instrument lib",
     "cover": "npm run instrument && gulp cover",
