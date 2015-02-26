@@ -3,7 +3,7 @@ var config = {
   spec: {
     main: './test/spec/index.js',
     options: {
-      paths: ['./lib'],
+      paths: ['./lib', './test/fixture'],
       map: './',
       dest: './test',
       source: 'spec.js'
@@ -13,7 +13,7 @@ var config = {
     file: './coverage/coverage.json',
     main: './test/spec/index.js',
     options: {
-      paths: ['./instrument'],
+      paths: ['./instrument', './test/fixture'],
       map: './',
       dest: './test',
       source: 'spec.js'
