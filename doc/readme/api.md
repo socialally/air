@@ -6,7 +6,7 @@ Example code assumes that `air` has been aliased to `$`.
 
 ### Core
 
-Core functionality is the main method, the class function and the pre-defined properties and methods on the class.
+Core functionality is the main method, the class function and the pre-defined properties and methods on the class, see [air.js](/air.js).
 
 ### air(selector, [context])
 
