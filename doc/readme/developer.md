@@ -20,6 +20,14 @@ Run the test suite and generate code coverage:
 npm run cover
 ```
 
+### Lint
+
+Run the source tree through [eslint][]:
+
+```
+npm run lint
+```
+
 ### Spec
 
 Compile the test specifications:
