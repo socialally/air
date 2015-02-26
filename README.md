@@ -44,7 +44,7 @@ Whilst the API is similar to [jquery](http://jquery.com) some notable design dec
 
 * Plugin architecture.
 * No global variables.
-* Do not support HTML parsing.
+* Stay focused, see [compatibility](#compatibility).
 
 To get a feel for how lightweight `air` is see [air.js](https://github.com/socialally/air/blob/master/lib/air.js), the core of the system is less than 100 lines of code (with comments). All other files in [lib](https://github.com/socialally/air/blob/master/lib) are plugins that should be loaded depending upon your application requirements.
 
