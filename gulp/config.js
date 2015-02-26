@@ -19,6 +19,15 @@ var config = {
       source: 'spec.js'
     }
   },
+  dist: {
+    main: './bundle.js',
+    options: {
+      paths: ['./lib'],
+      map: false,
+      dest: './dist',
+      source: 'air.js'
+    }
+  },
   lint: {
     src: ['./lib/**/*.js'],
     rules: {
