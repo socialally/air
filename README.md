@@ -11,6 +11,7 @@ Table of Contents
     * [Cover](#cover)
     * [Lint](#lint)
     * [Clean](#clean)
+    * [Dist](#dist)
     * [Spec](#spec)
     * [Instrument](#instrument)
     * [Readme](#readme)
@@ -96,6 +97,14 @@ Remove generated files:
 
 ```
 npm run clean
+```
+
+### Dist
+
+Create distribution builds in [dist](https://github.com/socialally/air/blob/master/dist):
+
+```
+npm run dist
 ```
 
 ### Spec

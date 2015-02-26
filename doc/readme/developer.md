@@ -36,6 +36,14 @@ Remove generated files:
 npm run clean
 ```
 
+### Dist
+
+Create distribution builds in [dist](/dist):
+
+```
+npm run dist
+```
+
 ### Spec
 
 Compile the test specifications:
