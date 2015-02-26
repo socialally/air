@@ -1,0 +1,10 @@
+/coverage
+/target
+/package
+/instrument
+/build
+/test/spec.js
+*.js.map
+*.log
+*.bak
+*.tgz

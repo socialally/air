@@ -1,0 +1,44 @@
+{
+  "name": "air",
+  "version": "0.1.0",
+  "description": "Lightweight, modular DOM library",
+  "author": "muji <noop@xpm.io>",
+  "publishConfig": {
+    "registry": "https://registry.socialal.ly",
+    "ca": null
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/socialally/air.git"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "brfs": "~1.4.0",
+    "browserify": "~9.0.3",
+    "chai": "~2.1.0",
+    "del": "~1.1.1",
+    "gulp": "~3.8.11",
+    "gulp-istanbul": "~0.6.0",
+    "gulp-istanbul-report": "0.0.1",
+    "gulp-mocha": "~2.0.0",
+    "gulp-mocha-phantomjs": "~0.5.3",
+    "gulp-sourcemaps": "~1.4.0",
+    "gulp-util": "~3.0.4",
+    "istanbul": "~0.3.6",
+    "mocha": "~2.1.0",
+    "mocha-phantomjs-istanbul": "0.0.2",
+    "require-dir": "~0.1.0",
+    "vinyl-buffer": "~1.0.0",
+    "vinyl-source-stream": "~1.0.0",
+    "watchify": "socialally/watchify"
+  },
+  "engine": [
+    "node >= 0.10.11"
+  ],
+  "scripts": {
+    "spec": "gulp spec",
+    "instrument": "istanbul instrument --output instrument lib",
+    "cover": "npm run instrument && gulp cover",
+    "test": "gulp test"
+  }
+}
