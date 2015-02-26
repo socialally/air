@@ -5,6 +5,6 @@
 /coverage
 /instrument
 /test/spec.js
-*.js.map
+/test/*.js.map
 *.log
 *.bak
