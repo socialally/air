@@ -146,12 +146,10 @@ if(window) {
     return this;
   }
 
-  function plugin(conf) {
+  module.exports = function(conf) {
     main = conf.main;
     conf.proto.append = append;
   }
-
-  module.exports = plugin;
 })();
 
 },{}],4:[function(require,module,exports){
@@ -189,11 +187,9 @@ if(window) {
     return this;
   }
 
-  function plugin(conf) {
+  module.exports = function(conf) {
     conf.proto.attr = attr;
   }
-
-  module.exports = plugin;
 })();
 
 },{}],5:[function(require,module,exports){
@@ -214,12 +210,10 @@ if(window) {
     return main(arr);
   }
 
-  function plugin(conf) {
+  module.exports = function(conf) {
     main = conf.main;
     conf.proto.children = children;
   }
-
-  module.exports = plugin;
 })();
 
 },{}],6:[function(require,module,exports){
@@ -289,13 +283,11 @@ if(window) {
     return this;
   }
 
-  function plugin(conf) {
+  module.exports = function(conf) {
     conf.proto.addClass = addClass;
     conf.proto.hasClass = hasClass;
     conf.proto.removeClass = removeClass;
   }
-
-  module.exports = plugin;
 })();
 
 },{}],7:[function(require,module,exports){
@@ -315,12 +307,10 @@ if(window) {
     return main(arr);
   }
 
-  function plugin(conf) {
+  module.exports = function(conf) {
     main = conf.main;
     conf.proto.clone = clone;
   }
-
-  module.exports = plugin;
 })();
 
 },{}],8:[function(require,module,exports){
@@ -352,16 +342,14 @@ if(window) {
     return n;
   }
 
-  function plugin(conf) {
+  module.exports = function(conf) {
     main = conf.main;
     main.create = create;
     main.el = el;
   }
 
   // optional `attr` dependency
-  plugin.deps = {attr: false};
-
-  module.exports = plugin;
+  //plugin.deps = {attr: false};
 })();
 
 },{}],9:[function(require,module,exports){
@@ -381,11 +369,9 @@ if(window) {
     return this;
   }
 
-  function plugin(conf) {
+  module.exports = function(conf) {
     conf.proto.css = css;
   }
-
-  module.exports = plugin;
 })();
 
 },{}],10:[function(require,module,exports){
@@ -422,14 +408,12 @@ if(window) {
     return this.attr(key, val);
   }
 
-  function plugin(conf) {
+  module.exports = function(conf) {
     conf.proto.data = data;
   }
 
   // required `attr` dependency
-  plugin.deps = {attr: true};
-
-  module.exports = plugin;
+  //plugin.deps = {attr: true};
 })();
 
 },{}],11:[function(require,module,exports){
@@ -452,12 +436,10 @@ if(window) {
     return this;
   }
 
-  function plugin(conf) {
+  module.exports = function(conf) {
     conf.proto.width = width;
     conf.proto.height = height;
   }
-
-  module.exports = plugin;
 })();
 
 },{}],12:[function(require,module,exports){
@@ -474,11 +456,9 @@ if(window) {
     return this;
   }
 
-  function plugin(conf) {
+  module.exports = function(conf) {
     conf.proto.empty = empty;
   }
-
-  module.exports = plugin;
 })();
 
 },{}],13:[function(require,module,exports){
@@ -499,12 +479,10 @@ if(window) {
     return this;
   }
 
-  function plugin(conf) {
+  module.exports = function(conf) {
     conf.proto.on = on;
     conf.proto.off = off;
   }
-
-  module.exports = plugin;
 })();
 
 },{}],14:[function(require,module,exports){
@@ -519,11 +497,9 @@ if(window) {
     return this;
   }
 
-  function plugin(conf) {
+  module.exports = function(conf) {
     conf.proto.first = first;
   }
-
-  module.exports = plugin;
 })();
 
 },{}],15:[function(require,module,exports){
@@ -547,11 +523,9 @@ if(window) {
     return this;
   }
 
-  function plugin(conf) {
+  module.exports = function(conf) {
     conf.proto.html = html;
   }
-
-  module.exports = plugin;
 })();
 
 },{}],16:[function(require,module,exports){
@@ -566,11 +540,9 @@ if(window) {
     return this;
   }
 
-  function plugin(conf) {
+  module.exports = function(conf) {
     conf.proto.last = last;
   }
-
-  module.exports = plugin;
 })();
 
 },{}],17:[function(require,module,exports){
@@ -589,11 +561,9 @@ if(window) {
     return this;
   }
 
-  function plugin(conf) {
+  module.exports = function(conf) {
     conf.proto.remove = remove;
   }
-
-  module.exports = plugin;
 })();
 
 },{}],18:[function(require,module,exports){
@@ -612,11 +582,9 @@ if(window) {
     return this;
   }
 
-  function plugin(conf) {
+  module.exports = function(conf) {
     conf.proto.text = text;
   }
-
-  module.exports = plugin;
 })();
 
 },{}]},{},[1]);
