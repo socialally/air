@@ -32,6 +32,7 @@
     "mocha": "~2.1.0",
     "mocha-phantomjs-istanbul": "0.0.2",
     "require-dir": "~0.1.0",
+    "run-sequence": "~1.0.2",
     "vinyl-buffer": "~1.0.0",
     "vinyl-source-stream": "~1.0.0",
     "watchify": "socialally/watchify"

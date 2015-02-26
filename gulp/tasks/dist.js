@@ -1,10 +1,18 @@
 var gulp = require('gulp')
   , config = require('../config')
-  , bundle = require('../bundle');
+  , bundle = require('../bundle')
+  , sequence = require('run-sequence')
+  , merge = require('merge')
+  , global = config.dist.global
+  , globalmin = merge(true, config.dist.global);
 
+globalmin.minify = true;
 
-gulp.task(
-  'dist-global',
-  bundle.bind(null, config.dist.global.main, config.dist.global.options));
+gulp.task('dist-global-min',
+  bundle.bind(null, globalmin));
+gulp.task('dist-global',
+  bundle.bind(null, global));
 
-gulp.task('dist', ['dist-global']);
+gulp.task('dist', function(cb) {
+  sequence('dist-global', 'dist-global-min', cb);
+});

@@ -8,32 +8,26 @@ var config = {
   ],
   spec: {
     main: './test/spec/index.js',
-    options: {
-      paths: ['./lib', './test/fixture'],
-      map: './',
-      dest: './test',
-      source: 'spec.js'
-    }
+    paths: ['./lib', './test/fixture'],
+    map: './',
+    dest: './test',
+    source: 'spec.js'
   },
   cover: {
     file: './coverage/coverage.json',
     main: './test/spec/index.js',
-    options: {
-      paths: ['./instrument', './test/fixture'],
-      map: './',
-      dest: './test',
-      source: 'spec.js'
-    }
+    paths: ['./instrument', './test/fixture'],
+    map: './',
+    dest: './test',
+    source: 'spec.js'
   },
   dist: {
     global: {
       main: './gulp/build/global.js',
-      options: {
-        paths: ['./lib'],
-        map: false,
-        dest: './dist',
-        source: 'air.global.js'
-      }
+      paths: ['./lib'],
+      map: false,
+      dest: './dist',
+      source: 'air.global.js'
     }
   },
   lint: {

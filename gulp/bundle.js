@@ -7,8 +7,8 @@ var gulp = require('gulp')
   , source = require('vinyl-source-stream')
   , buffer = require('vinyl-buffer');
 
-function bundle(main, opts) {
-  var bundler = browserify(main, opts);
+function bundle(opts, cb) {
+  var bundler = browserify(opts.main, opts);
   var useSourceMap = opts.map !== false;
   return bundler.bundle()
     .on('error', gutil.log)
@@ -16,6 +16,8 @@ function bundle(main, opts) {
     .pipe(buffer())
     // loads map from browserify file
     .pipe(useSourceMap ? sourcemaps.init({loadMaps: true}) : gutil.noop())
+    // uglify compiled file
+    .pipe(opts.minify ? uglify() : gutil.noop())
     // report size before writing source map.
     .pipe(size({title:'js'}))
     // writes .map file
