@@ -46,3 +46,20 @@ Get the element at the specified index, if no arguments are passed the `dom` arr
 ##### each(iterator)
 
 Iterate the underlying elements, alias for `dom.forEach`.
+
+### Plugins
+
+Core plugins that may be loaded on demand, syntax examples assume that `air` has been aliased to `$`.
+
+Everything except the [core methods](#core) are implemented as plugins so there are many examples in [lib](/lib).
+
+#### append
+
+Insert content, specified by the parameter, to the end of each element in the set of matched elements.
+
+```javascript
+$(selector, [context]).append(content);
+```
+
+* File: [append.js](/lib/append.js)
+* Dependencies: none
