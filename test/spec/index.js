@@ -14,4 +14,5 @@ module.exports = {
   empty: require('./empty'),
   first: require('./first'),
   last: require('./last'),
+  remove: require('./remove'),
 }
