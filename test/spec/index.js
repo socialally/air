@@ -15,4 +15,5 @@ module.exports = {
   first: require('./first'),
   last: require('./last'),
   remove: require('./remove'),
+  text: require('./text'),
 }
