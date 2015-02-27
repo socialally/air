@@ -7,7 +7,8 @@ module.exports = {
 
   // plugin tests
   append: require('./append'),
+  attr: require('./attr'),
   class: require('./class'),
   create: require('./create'),
-  attr: require('./attr'),
+  data: require('./data'),
 }
