@@ -110,18 +110,13 @@ if(window) {
     }
   }
 
-  // main entry point as instance method,
-  // allows plugin prototype methods to use
-  // this.air()
-  proto.air = air;
-
   // main plugin method
   air.plugin = proto.plugin = plugin;
 
   // expose class reference
   air.Air = Air;
 
-  module.exports = air;
+  module.exports = proto.air = air;
 })();
 
 },{}],3:[function(require,module,exports){
@@ -153,29 +148,42 @@ module.exports = function() {
  *  matched elements or set one or more attributes for every matched element.
  */
 function attr(key, val) {
-  if(!this.length) {
+  var i, attrs, map = {};
+  if(!this.length || key !== undefined && !Boolean(key)) {
     return this;
   }
 
   if(key === undefined && val === undefined) {
-    // no args, get all attributes for first element
-    return this.dom[0].attributes;
-  }else if(typeof key === 'string' && !val) {
-    // set or delete attribute on first matched element
-    if(val === null) {
-      return this.dom[0].removeAttribute(key);
+    // no args, get all attributes for first element as object
+    attrs = this.dom[0].attributes;
+    // convert NamedNodeMap to plain object
+    for(i = 0;i < attrs.length;i++) {
+      // NOTE: nodeValue is deprecated, check support for `value` in IE9!
+      map[attrs[i].name] = attrs[i].value;
     }
+    return map;
+  }else if(typeof key === 'string' && !val) {
+    // delete attribute on all matched elements
+    if(val === null) {
+      this.each(function(el) {
+        el.removeAttribute(key);
+      })
+      return this;
+    }
+    // get attribute for first matched elements
     return this.dom[0].getAttribute(key);
+  // handle object map of attributes
   }else {
     this.each(function(el) {
       if(typeof key === 'object') {
         for(var z in key) {
+          if(key[z] === null) {
+            el.removeAttribute(z);
+            continue;
+          }
           el.setAttribute(z, key[z]);
         }
       }else{
-        if(val === null) {
-          return el.removeAttribute(key);
-        }
         el.setAttribute(key, val);
       }
     });
@@ -255,12 +263,18 @@ function hasClass(className) {
  */
 function removeClass(className) {
   if(!className) {
+    // remove all classes from all matched elements
+    this.each(function(el) {
+      el.removeAttribute(attr);
+    });
     return this;
   }
   var classes = className.split(/\s+/);
   this.each(function(el) {
     var val = el.getAttribute(attr);
-    var names = val ? val.split(/\s+/) : [];
+    // no class attribute - nothing to remove
+    if(!val) { return }
+    var names = val.split(/\s+/);
     names = names.filter(function(nm) {
       return ~classes.indexOf(nm) ? false : nm;
     })
@@ -386,7 +400,7 @@ module.exports = function() {
 //plugin.deps = {attr: true};
 
 },{}],11:[function(require,module,exports){
-function width() {
+function width(num) {
   if(!arguments.length && this.length) {
     return this.dom[0].innerWidth;
   }
@@ -394,7 +408,7 @@ function width() {
   return this;
 }
 
-function height() {
+function height(num) {
   if(!arguments.length && this.length) {
     return this.dom[0].innerHeight;
   }
@@ -460,15 +474,19 @@ module.exports = function() {
  *  Get the HTML of the first matched element or set the HTML
  *  content of all matched elements.
  */
-function html(markup) {
+function html(markup, outer) {
   if(!this.length) {
     return this;
   }
+  if(typeof markup === 'boolean') {
+    outer = markup;
+  }
+  var prop = outer ? 'outerHTML' : 'innerHTML';
   if(markup === undefined) {
-    return this.dom[0].innerHTML;
+    return this.dom[0][prop];
   }
   this.each(function(el) {
-    el.innerHTML = markup;
+    el[prop] = markup;
   });
   return this;
 }
