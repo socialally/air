@@ -12,4 +12,6 @@ module.exports = {
   create: require('./create'),
   data: require('./data'),
   empty: require('./empty'),
+  first: require('./first'),
+  last: require('./last'),
 }
