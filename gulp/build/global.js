@@ -16,6 +16,7 @@ air.plugin([
   require('dimension'),
   require('empty'),
   require('event'),
+  require('find'),
   require('first'),
   require('html'),
   require('last'),

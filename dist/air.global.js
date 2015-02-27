@@ -17,6 +17,7 @@ air.plugin([
   require('dimension'),
   require('empty'),
   require('event'),
+  require('find'),
   require('first'),
   require('html'),
   require('last'),
@@ -28,7 +29,7 @@ if(window) {
   window.$ = air;
 }
 
-},{"air":2,"append":3,"attr":4,"children":5,"class":6,"clone":7,"create":8,"css":9,"data":10,"dimension":11,"empty":12,"event":13,"first":14,"html":15,"last":16,"remove":17,"text":18}],2:[function(require,module,exports){
+},{"air":2,"append":3,"attr":4,"children":5,"class":6,"clone":7,"create":8,"css":9,"data":10,"dimension":11,"empty":12,"event":13,"find":14,"first":15,"html":16,"last":17,"remove":18,"text":19}],2:[function(require,module,exports){
 ;(function() {
   'use strict'
 
@@ -49,6 +50,9 @@ if(window) {
    *  @param context The context element for a selector.
    */
   function Air(el, context) {
+    if(typeof context === 'string') {
+      context = document.querySelector(context);
+    }
     context = context || document;
     this.dom = typeof el === 'string' ? context.querySelectorAll(el) : el;
     if(el instanceof Air) {
@@ -197,17 +201,32 @@ module.exports = function() {
 
 },{}],5:[function(require,module,exports){
 /**
- *  Get the children of each element in the set of matched elements.
+ *  Get the children of each element in the set of matched elements,
+ *  optionally filtering by selector.
  */
-function children() {
-  var arr = [];
+function children(selector) {
+  var arr = [], slice = Array.prototype.slice, nodes, matches;
   this.each(function(el) {
-    arr = arr.concat(Array.prototype.slice.call(el.childNodes));
+    nodes = slice.call(el.childNodes);
+    // only include elements
+    nodes = nodes.filter(function(n) {
+      if(n instanceof Element) return n;
+    })
+    // filter direct descendants by selector
+    if(selector) {
+      matches = slice.call(el.querySelectorAll(selector));
+      for(var i = 0;i < nodes.length;i++) {
+        if(~matches.indexOf(nodes[i])) {
+          arr.push(nodes[i]);
+        }
+      }
+    // get all direct descendants
+    }else{
+      arr = arr.concat(nodes);
+    }
   });
   return this.air(arr);
 }
-
-// TODO: allow filtering by selector
 
 module.exports = function() {
   this.children = children;
@@ -344,6 +363,9 @@ module.exports = function() {
 //plugin.deps = {attr: false};
 
 },{}],9:[function(require,module,exports){
+// TODO: return from window.getComputedStyle() so that
+// TODO: this method also retrieves styles declared in stylesheets
+
 function css(props) {
   if(props === undefined && this.length) {
     return this.dom[0].style;
@@ -401,18 +423,28 @@ module.exports = function() {
 
 },{}],11:[function(require,module,exports){
 function width(num) {
-  if(!arguments.length && this.length) {
-    return this.dom[0].innerWidth;
+  var style;
+  if(!this.length) {
+    return this;
   }
-  // TODO
+  if(num === undefined) {
+    style = window.getComputedStyle(this.dom[0], null);
+    return parseInt(style.getPropertyValue('width'));
+  }
+  // TODO: set element(s) width
   return this;
 }
 
 function height(num) {
-  if(!arguments.length && this.length) {
-    return this.dom[0].innerHeight;
+  var style;
+  if(!this.length) {
+    return this;
   }
-  // TODO
+  if(num === undefined) {
+    style = window.getComputedStyle(this.dom[0], null);
+    return parseInt(style.getPropertyValue('height'));
+  }
+  // TODO: set element(s) height
   return this;
 }
 
@@ -458,6 +490,23 @@ module.exports = function() {
 
 },{}],14:[function(require,module,exports){
 /**
+ *  Get the descendants of each element in the current set
+ *  of matched elements, filtered by a selector.
+ */
+function find(selector) {
+  var arr = [], $ = this.air;
+  this.each(function(el) {
+    arr = arr.concat(Array.prototype.slice.call($(selector, el).dom));
+  });
+  return $(arr);
+}
+
+module.exports = function() {
+  this.find = find;
+}
+
+},{}],15:[function(require,module,exports){
+/**
  *  Reduce the set of matched elements to the first in the set.
  */
 function first() {
@@ -469,10 +518,14 @@ module.exports = function() {
   this.first = first;
 }
 
-},{}],15:[function(require,module,exports){
+},{}],16:[function(require,module,exports){
 /**
  *  Get the HTML of the first matched element or set the HTML
  *  content of all matched elements.
+ *
+ *  Note that when using `outer` to set `outerHTML` you will likely invalidate
+ *  the current encapsulated elements and need to re-run the selector to
+ *  update the matched elements.
  */
 function html(markup, outer) {
   if(!this.length) {
@@ -480,14 +533,19 @@ function html(markup, outer) {
   }
   if(typeof markup === 'boolean') {
     outer = markup;
+    markup = undefined;
   }
   var prop = outer ? 'outerHTML' : 'innerHTML';
   if(markup === undefined) {
     return this.dom[0][prop];
   }
+  markup = markup || '';
   this.each(function(el) {
     el[prop] = markup;
   });
+  // TODO: should we remove matched elements when setting outerHTML?
+  // TODO: the matched elements have been rewritten and do not exist
+  // TODO: in the DOM anymore: ie: this.dom = [];
   return this;
 }
 
@@ -495,7 +553,7 @@ module.exports = function() {
   this.html = html;
 }
 
-},{}],16:[function(require,module,exports){
+},{}],17:[function(require,module,exports){
 /**
  *  Reduce the set of matched elements to the final one in the set.
  */
@@ -508,16 +566,21 @@ module.exports = function() {
   this.last = last;
 }
 
-},{}],17:[function(require,module,exports){
+},{}],18:[function(require,module,exports){
 /**
  *  Remove all matched elements.
  */
 function remove() {
-  this.each(function(el) {
-    if(el.parentNode) {
-      el.parentNode.removeChild(el);
-    }
-  });
+  var i, el;
+  for(i = 0;i < this.length;i++) {
+    el = this.dom[i];
+    // if for some reason this point to the document element
+    // an exception will occur, pretty hard to reproduce so
+    // going to let it slide
+    el.parentNode.removeChild(el);
+    this.dom.splice(i, 1);
+    i--;
+  }
   return this;
 }
 
@@ -525,15 +588,23 @@ module.exports = function() {
   this.remove = remove;
 }
 
-},{}],18:[function(require,module,exports){
+},{}],19:[function(require,module,exports){
+/**
+ *  IE9 supports textContent and innerText has various issues.
+ *
+ *  See: https://developer.mozilla.org/en-US/docs/Web/API/Node/textContent
+ *  See: http://www.kellegous.com/j/2013/02/27/innertext-vs-textcontent/
+ */
 function text(txt) {
-  if(txt === undefined && this.length) {
-    return this.dom[0].textContent !== undefined
-      ? this.dom[0].textContent : this.dom[0].innerText;
+  if(!this.length) {
+    return this;
+  }
+  if(txt === undefined) {
+    return this.dom[0].textContent;
   }
   txt = txt || '';
   this.each(function(el) {
-    el.textContent = el.innerText = txt;
+    el.textContent = txt;
   });
   return this;
 }
