@@ -29,4 +29,11 @@ describe('Plugin:', function() {
     done();
   });
 
+  it('should load plugin group', function(done) {
+    $.plugin([require('attributes')]);
+    var el = $('div');
+    expect(el.attr).to.be.a('function');
+    expect(el.data).to.be.a('function');
+    done();
+  });
 });
