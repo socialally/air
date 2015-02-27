@@ -8,4 +8,5 @@ module.exports = {
   // plugin tests
   append: require('./append'),
   create: require('./create'),
+  attr: require('./attr'),
 }
