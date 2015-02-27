@@ -30,3 +30,7 @@ If you really need to assign arbitrary data to an element you can always do so b
 ### XML
 
 Designed to work with `HTML` documents the behaviour when modifying `XML` documents is undefined.
+
+### Selector Extensions
+
+The [jquery][] library extends CSS selectors with pseudo-selectors such as `:checked`, we believe this is unnecessary as all selector extension functionality can be achieved using other means.
