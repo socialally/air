@@ -11,4 +11,5 @@ module.exports = {
   class: require('./class'),
   create: require('./create'),
   data: require('./data'),
+  empty: require('./empty'),
 }
