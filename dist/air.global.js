@@ -118,6 +118,9 @@ if(window) {
   // main plugin method
   air.plugin = proto.plugin = plugin;
 
+  // expose class reference
+  air.Air = Air;
+
   module.exports = air;
 })();
 
