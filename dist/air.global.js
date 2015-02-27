@@ -147,6 +147,10 @@ module.exports = function() {
 }
 
 },{}],4:[function(require,module,exports){
+/**
+ *  Get the value of an attribute for the first element in the set of
+ *  matched elements or set one or more attributes for every matched element.
+ */
 function attr(key, val) {
   if(!this.length) {
     return this;
@@ -262,6 +266,8 @@ function removeClass(className) {
   return this;
 }
 
+// TODO: add toggleClass()
+
 module.exports = function() {
   this.addClass = addClass;
   this.hasClass = hasClass;
@@ -301,16 +307,20 @@ function create(tag) {
  *  @param attrs Object map of element attributes.
  */
 function el(tag, attrs) {
-  var n = this.air(create(tag));
+  var n = el.air(create(tag));
   if(attrs && n.attr) {
     return n.attr(attrs);
   }
   return n;
 }
 
-module.exports = function(conf) {
-  conf.main.create = create;
-  conf.main.el = el;
+module.exports = function() {
+  // static method needs access to main function
+  // to wrap the created element
+  el.air = this.air;
+
+  this.air.create = create;
+  this.air.el = el;
 }
 
 // optional `attr` dependency

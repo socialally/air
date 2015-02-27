@@ -10,8 +10,8 @@
     return config;
   }
 
-  module.exports = function plugin(opts, conf) {
+  module.exports = function plugin(conf) {
     config = conf;
-    opts.proto.method = method;
+    this.method = method;
   }
 })();

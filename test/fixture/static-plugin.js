@@ -8,7 +8,7 @@
     return el;
   }
 
-  module.exports = function plugin(opts) {
-    opts.main.method = method;
+  module.exports = function plugin() {
+    this.air.method = method;
   }
 })();

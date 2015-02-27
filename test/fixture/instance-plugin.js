@@ -8,7 +8,7 @@
     return this;
   }
 
-  module.exports = function plugin(opts) {
-    opts.proto.method = method;
+  module.exports = function plugin() {
+    this.method = method;
   }
 })();
