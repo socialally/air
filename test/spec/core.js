@@ -4,6 +4,13 @@ var $ = require('air')
 
 describe('Core:', function() {
 
+  it('should use zero arguments', function(done) {
+    var el = $();
+    expect(el.length).to.eql(0);
+    expect(el.dom).to.be.an('array');
+    done();
+  });
+
   it('should use selector string', function(done) {
     var el = $(util.selector);
     expect(el.length).to.eql(1);
