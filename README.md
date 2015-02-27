@@ -23,7 +23,7 @@ Table of Contents
     * [Array Access](#array-access)
     * [HTML Parsing](#html-parsing)
     * [AJAX](#ajax)
-    * [Data](#data)
+    * [Element Data](#element-data)
     * [XML](#xml)
   * [Developer](#developer)
     * [Test](#test)
@@ -203,7 +203,7 @@ Note that recent [jquery](http://jquery.com) versions now recommend `$.parseHTML
 
 This is deemed to be irrelevant to DOM manipulation and is best left to one of the many capable libraries available.
 
-### Data
+### Element Data
 
 The `data` plugin allows manipulating the `data-` attributes of an element but does not store any data on the element itself. If you wish to maintain data as part of your application it would be best resolved using another pattern (eg: [storage](https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API)).
 
