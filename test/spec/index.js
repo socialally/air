@@ -13,6 +13,7 @@ module.exports = {
   data: require('./data'),
   empty: require('./empty'),
   first: require('./first'),
+  html: require('./html'),
   last: require('./last'),
   remove: require('./remove'),
   text: require('./text'),

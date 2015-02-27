@@ -13,6 +13,12 @@ describe('Text:', function() {
   })
   afterEach(util.after);
 
+  it('should return self on no elements', function(done) {
+    var el = $();
+    expect(el.text()).to.equal(el);
+    done();
+  });
+
   it('should get text content', function(done) {
     var el = $('.text span');
     expect(el.text()).to.eql('foo');
