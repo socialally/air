@@ -19,6 +19,16 @@ describe('Core:', function() {
     done();
   });
 
+  it('should use selector w/ string context (context selector)',
+    function(done) {
+      var el = $(util.selector, 'body');
+      expect(el.length).to.eql(1);
+      expect(el.dom).to.be.an('array');
+      expect(el.get(0)).to.be.instanceof(Element);
+      done();
+    }
+  );
+
   it('should use existing wrapped elements', function(done) {
     var el = $(util.selector)
       , wl = $(el);
