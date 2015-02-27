@@ -146,428 +146,398 @@ module.exports = function() {
 }
 
 },{}],4:[function(require,module,exports){
-;(function() {
-  'use strict'
+'use strict'
 
-  function attr(key, val) {
-    if(!this.length) {
-      return this;
-    }
-
-    if(key === undefined && val === undefined) {
-      // no args, get all attributes for first element
-      return this.dom[0].attributes;
-    }else if(typeof key === 'string' && !val) {
-      // set or delete attribute on first matched element
-      if(val === null) {
-        return this.dom[0].removeAttribute(key);
-      }
-      return this.dom[0].getAttribute(key);
-    }else {
-      this.each(function(el) {
-        if(typeof key === 'object') {
-          for(var z in key) {
-            el.setAttribute(z, key[z]);
-          }
-        }else{
-          if(val === null) {
-            return el.removeAttribute(key);
-          }
-          el.setAttribute(key, val);
-        }
-      });
-    }
+function attr(key, val) {
+  if(!this.length) {
     return this;
   }
 
-  module.exports = function() {
-    this.attr = attr;
+  if(key === undefined && val === undefined) {
+    // no args, get all attributes for first element
+    return this.dom[0].attributes;
+  }else if(typeof key === 'string' && !val) {
+    // set or delete attribute on first matched element
+    if(val === null) {
+      return this.dom[0].removeAttribute(key);
+    }
+    return this.dom[0].getAttribute(key);
+  }else {
+    this.each(function(el) {
+      if(typeof key === 'object') {
+        for(var z in key) {
+          el.setAttribute(z, key[z]);
+        }
+      }else{
+        if(val === null) {
+          return el.removeAttribute(key);
+        }
+        el.setAttribute(key, val);
+      }
+    });
   }
-})();
+  return this;
+}
+
+module.exports = function() {
+  this.attr = attr;
+}
 
 },{}],5:[function(require,module,exports){
-;(function() {
-  'use strict'
+'use strict'
 
-  /**
-   *  Get the children of each element in the set of matched elements.
-   */
-  function children() {
-    var arr = [];
-    this.each(function(el) {
-      arr = arr.concat(Array.prototype.slice.call(el.childNodes));
-    });
-    return this.air(arr);
-  }
+/**
+ *  Get the children of each element in the set of matched elements.
+ */
+function children() {
+  var arr = [];
+  this.each(function(el) {
+    arr = arr.concat(Array.prototype.slice.call(el.childNodes));
+  });
+  return this.air(arr);
+}
 
-  module.exports = function() {
-    this.children = children;
-  }
-})();
+module.exports = function() {
+  this.children = children;
+}
 
 },{}],6:[function(require,module,exports){
-;(function() {
-  'use strict'
+'use strict'
 
-  /**
-   *  IE9 does not support `Element.classList`, when support for IE9 is
-   *  dropped this can be refactored.
-   */
-  var attr = 'class';
+/**
+ *  IE9 does not support `Element.classList`, when support for IE9 is
+ *  dropped this can be refactored.
+ */
+var attr = 'class';
 
-  /**
-   *  Adds the specified class(es) to each of the set of matched elements.
-   */
-  function addClass(className) {
-    if(!className) {
-      return this;
-    }
-    var classes = className.split(/\s+/);
-    this.each(function(el) {
-      var val = el.getAttribute(attr);
-      var names = val ? val.split(/\s+/) : [];
-      classes.forEach(function(nm) {
-        if(!~names.indexOf(nm)) {
-          names.push(nm);
-        }
-      })
-      el.setAttribute(attr, names.join(' '));
-    })
+/**
+ *  Adds the specified class(es) to each of the set of matched elements.
+ */
+function addClass(className) {
+  if(!className) {
     return this;
   }
-
-  /**
-   *  Determine whether any of the matched elements are assigned the
-   *  given class.
-   */
-  function hasClass(className) {
-    var i, val;
-    for(i = 0;i < this.length;i++) {
-      val = this.get(i).getAttribute(attr);
-      val = val ? val.split(/\s+/) : [];
-      if(~val.indexOf(className)) {
-        return true;
+  var classes = className.split(/\s+/);
+  this.each(function(el) {
+    var val = el.getAttribute(attr);
+    var names = val ? val.split(/\s+/) : [];
+    classes.forEach(function(nm) {
+      if(!~names.indexOf(nm)) {
+        names.push(nm);
       }
-    }
-    return false;
-  }
-
-  /**
-   *  Remove a single class, multiple classes, or all classes from
-   *  each element in the set of matched elements.
-   */
-  function removeClass(className) {
-    if(!className) {
-      return this;
-    }
-    var classes = className.split(/\s+/);
-    this.each(function(el) {
-      var val = el.getAttribute(attr);
-      var names = val ? val.split(/\s+/) : [];
-      names = names.filter(function(nm) {
-        return ~classes.indexOf(nm) ? false : nm;
-      })
-      el.setAttribute(attr, names.join(' '));
     })
+    el.setAttribute(attr, names.join(' '));
+  })
+  return this;
+}
+
+/**
+ *  Determine whether any of the matched elements are assigned the
+ *  given class.
+ */
+function hasClass(className) {
+  var i, val;
+  for(i = 0;i < this.length;i++) {
+    val = this.get(i).getAttribute(attr);
+    val = val ? val.split(/\s+/) : [];
+    if(~val.indexOf(className)) {
+      return true;
+    }
+  }
+  return false;
+}
+
+/**
+ *  Remove a single class, multiple classes, or all classes from
+ *  each element in the set of matched elements.
+ */
+function removeClass(className) {
+  if(!className) {
     return this;
   }
+  var classes = className.split(/\s+/);
+  this.each(function(el) {
+    var val = el.getAttribute(attr);
+    var names = val ? val.split(/\s+/) : [];
+    names = names.filter(function(nm) {
+      return ~classes.indexOf(nm) ? false : nm;
+    })
+    el.setAttribute(attr, names.join(' '));
+  })
+  return this;
+}
 
-  module.exports = function() {
-    this.addClass = addClass;
-    this.hasClass = hasClass;
-    this.removeClass = removeClass;
-  }
-})();
+module.exports = function() {
+  this.addClass = addClass;
+  this.hasClass = hasClass;
+  this.removeClass = removeClass;
+}
 
 },{}],7:[function(require,module,exports){
-;(function() {
-  'use strict'
+'use strict'
 
-  /**
-   *  Create a deep copy of the set of matched elements.
-   */
-  function clone() {
-    var arr = [];
-    this.each(function(el) {
-      arr.push(el.cloneNode(true));
-    });
-    return this.air(arr);
-  }
+/**
+ *  Create a deep copy of the set of matched elements.
+ */
+function clone() {
+  var arr = [];
+  this.each(function(el) {
+    arr.push(el.cloneNode(true));
+  });
+  return this.air(arr);
+}
 
-  module.exports = function() {
-    this.clone = clone;
-  }
-})();
+module.exports = function() {
+  this.clone = clone;
+}
 
 },{}],8:[function(require,module,exports){
-;(function() {
-  'use strict'
+'use strict'
 
-  /**
-   *  Create a DOM element.
-   *
-   *  @param tag The element tag name.
-   */
-  function create(tag) {
-    return document.createElement(tag);
+/**
+ *  Create a DOM element.
+ *
+ *  @param tag The element tag name.
+ */
+function create(tag) {
+  return document.createElement(tag);
+}
+
+/**
+ *  Create a wrapped DOM element.
+ *
+ *  @param tag The element tag name.
+ *  @param attrs Object map of element attributes.
+ */
+function el(tag, attrs) {
+  var n = this.air(create(tag));
+  if(attrs && n.attr) {
+    return n.attr(attrs);
   }
+  return n;
+}
 
-  /**
-   *  Create a wrapped DOM element.
-   *
-   *  @param tag The element tag name.
-   *  @param attrs Object map of element attributes.
-   */
-  function el(tag, attrs) {
-    var n = this.air(create(tag));
-    if(attrs && n.attr) {
-      return n.attr(attrs);
-    }
-    return n;
-  }
+module.exports = function(conf) {
+  conf.main.create = create;
+  conf.main.el = el;
+}
 
-  module.exports = function(conf) {
-    conf.main.create = create;
-    conf.main.el = el;
-  }
-
-  // optional `attr` dependency
-  //plugin.deps = {attr: false};
-})();
+// optional `attr` dependency
+//plugin.deps = {attr: false};
 
 },{}],9:[function(require,module,exports){
-;(function() {
-  'use strict'
+'use strict'
 
-  function css(props) {
-    if(props === undefined && this.length) {
-      return this.dom[0].style;
+function css(props) {
+  if(props === undefined && this.length) {
+    return this.dom[0].style;
+  }
+  this.each(function(el) {
+    el.style = el.style || {};
+    for(var z in props) {
+      el.style[z] = props[z];
     }
-    this.each(function(el) {
-      el.style = el.style || {};
-      for(var z in props) {
-        el.style[z] = props[z];
-      }
-    });
-    return this;
-  }
+  });
+  return this;
+}
 
-  module.exports = function() {
-    this.css = css;
-  }
-})();
+module.exports = function() {
+  this.css = css;
+}
 
 },{}],10:[function(require,module,exports){
-;(function() {
-  'use strict'
+'use strict'
 
-  var prefix = 'data-';
+var prefix = 'data-';
 
-  /**
-   *  Get a data attribute of the first matched element or
-   *  set `data` attribute(s) on all matched elements.
-   *
-   *  Requires that the `attr` plugin has been loaded.
-   */
-  function data(key, val) {
-    var o = {}, z;
+/**
+ *  Get a data attribute of the first matched element or
+ *  set `data` attribute(s) on all matched elements.
+ *
+ *  Requires that the `attr` plugin has been loaded.
+ */
+function data(key, val) {
+  var o = {}, z;
 
-    function inject(name) {
-      if(typeof name === 'string' && name.indexOf(prefix) !== 0) {
-        name = prefix + name;
-      }
-      return name;
+  function inject(name) {
+    if(typeof name === 'string' && name.indexOf(prefix) !== 0) {
+      name = prefix + name;
     }
-
-    if(typeof key === 'string') {
-      key = inject(key);
-    }else if(typeof key === 'object') {
-      for(z in key) {
-        o[inject(z)] = key[z];
-      }
-      key = o;
-    }
-
-    return this.attr(key, val);
+    return name;
   }
 
-  module.exports = function() {
-    this.data = data;
+  if(typeof key === 'string') {
+    key = inject(key);
+  }else if(typeof key === 'object') {
+    for(z in key) {
+      o[inject(z)] = key[z];
+    }
+    key = o;
   }
 
-  // required `attr` dependency
-  //plugin.deps = {attr: true};
-})();
+  return this.attr(key, val);
+}
+
+module.exports = function() {
+  this.data = data;
+}
+
+// required `attr` dependency
+//plugin.deps = {attr: true};
 
 },{}],11:[function(require,module,exports){
-;(function() {
-  'use strict'
+'use strict'
 
-  function width() {
-    if(!arguments.length && this.length) {
-      return this.dom[0].innerWidth;
-    }
-    // TODO
-    return this;
+function width() {
+  if(!arguments.length && this.length) {
+    return this.dom[0].innerWidth;
   }
+  // TODO
+  return this;
+}
 
-  function height() {
-    if(!arguments.length && this.length) {
-      return this.dom[0].innerHeight;
-    }
-    // TODO
-    return this;
+function height() {
+  if(!arguments.length && this.length) {
+    return this.dom[0].innerHeight;
   }
+  // TODO
+  return this;
+}
 
-  module.exports = function() {
-    this.width = width;
-    this.height = height;
-  }
-})();
+module.exports = function() {
+  this.width = width;
+  this.height = height;
+}
 
 },{}],12:[function(require,module,exports){
-;(function() {
-  'use strict'
+'use strict'
 
-  /**
-   *  Remove the inner HTML from all matched elements.
-   */
-  function empty() {
-    this.each(function(el) {
-      el.innerHTML = '';
-    });
-    return this;
-  }
+/**
+ *  Remove the inner HTML from all matched elements.
+ */
+function empty() {
+  this.each(function(el) {
+    el.innerHTML = '';
+  });
+  return this;
+}
 
-  module.exports = function() {
-    this.empty = empty;
-  }
-})();
+module.exports = function() {
+  this.empty = empty;
+}
 
 },{}],13:[function(require,module,exports){
-;(function() {
-  'use strict'
+'use strict'
 
-  function on(nm, cb, capture) {
-    this.each(function(el) {
-      el.addEventListener(nm, cb, capture);
-    });
-    return this;
-  }
+function on(nm, cb, capture) {
+  this.each(function(el) {
+    el.addEventListener(nm, cb, capture);
+  });
+  return this;
+}
 
-  function off(nm, cb, capture) {
-    this.each(function(el) {
-      el.removeEventListener(nm, cb, capture);
-    });
-    return this;
-  }
+function off(nm, cb, capture) {
+  this.each(function(el) {
+    el.removeEventListener(nm, cb, capture);
+  });
+  return this;
+}
 
-  module.exports = function() {
-    this.on = on;
-    this.off = off;
-  }
-})();
+module.exports = function() {
+  this.on = on;
+  this.off = off;
+}
 
 },{}],14:[function(require,module,exports){
-;(function() {
-  'use strict'
+'use strict'
 
-  /**
-   *  Reduce the set of matched elements to the first in the set.
-   */
-  function first() {
-    this.dom = this.dom.slice(0, 1);
-    return this;
-  }
+/**
+ *  Reduce the set of matched elements to the first in the set.
+ */
+function first() {
+  this.dom = this.dom.slice(0, 1);
+  return this;
+}
 
-  module.exports = function() {
-    this.first = first;
-  }
-})();
+module.exports = function() {
+  this.first = first;
+}
 
 },{}],15:[function(require,module,exports){
-;(function() {
-  'use strict'
+'use strict'
 
-  /**
-   *  Get the HTML of the first matched element or set the HTML
-   *  content of all matched elements.
-   */
-  function html(markup) {
-    if(!this.length) {
-      return this;
-    }
-    if(markup === undefined) {
-      return this.dom[0].innerHTML;
-    }
-    this.each(function(el) {
-      el.innerHTML = markup;
-    });
+/**
+ *  Get the HTML of the first matched element or set the HTML
+ *  content of all matched elements.
+ */
+function html(markup) {
+  if(!this.length) {
     return this;
   }
-
-  module.exports = function() {
-    this.html = html;
+  if(markup === undefined) {
+    return this.dom[0].innerHTML;
   }
-})();
+  this.each(function(el) {
+    el.innerHTML = markup;
+  });
+  return this;
+}
+
+module.exports = function() {
+  this.html = html;
+}
 
 },{}],16:[function(require,module,exports){
-;(function() {
-  'use strict'
+'use strict'
 
-  /**
-   *  Reduce the set of matched elements to the final one in the set.
-   */
-  function last() {
-    this.dom = this.dom.slice(this.length - 1);
-    return this;
-  }
+/**
+ *  Reduce the set of matched elements to the final one in the set.
+ */
+function last() {
+  this.dom = this.dom.slice(this.length - 1);
+  return this;
+}
 
-  module.exports = function() {
-    this.last = last;
-  }
-})();
+module.exports = function() {
+  this.last = last;
+}
 
 },{}],17:[function(require,module,exports){
-;(function() {
-  'use strict'
+'use strict'
 
-  /**
-   *  Remove all matched elements.
-   */
-  function remove() {
-    this.each(function(el) {
-      if(el.parentNode) {
-        el.parentNode.removeChild(el);
-      }
-    });
-    return this;
-  }
+/**
+ *  Remove all matched elements.
+ */
+function remove() {
+  this.each(function(el) {
+    if(el.parentNode) {
+      el.parentNode.removeChild(el);
+    }
+  });
+  return this;
+}
 
-  module.exports = function() {
-    this.remove = remove;
-  }
-})();
+module.exports = function() {
+  this.remove = remove;
+}
 
 },{}],18:[function(require,module,exports){
-;(function() {
-  'use strict'
+'use strict'
 
-  function text(txt) {
-    if(txt === undefined && this.length) {
-      return this.dom[0].textContent !== undefined
-        ? this.dom[0].textContent : this.dom[0].innerText;
-    }
-    txt = txt || '';
-    this.each(function(el) {
-      el.textContent = el.innerText = txt;
-    });
-    return this;
+function text(txt) {
+  if(txt === undefined && this.length) {
+    return this.dom[0].textContent !== undefined
+      ? this.dom[0].textContent : this.dom[0].innerText;
   }
+  txt = txt || '';
+  this.each(function(el) {
+    el.textContent = el.innerText = txt;
+  });
+  return this;
+}
 
-  module.exports = function() {
-    this.text = text;
-  }
-})();
+module.exports = function() {
+  this.text = text;
+}
 
 },{}]},{},[1]);
