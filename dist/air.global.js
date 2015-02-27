@@ -45,7 +45,7 @@ if(window) {
    *  the array methods `isArray`, `forEach` and `filter` are available,
    *  for older browsers you will need to include polyfills.
    *
-   *  @param el A DOM element, array of elements or selector.
+   *  @param el A selector, DOM element, array of elements or Air instance.
    *  @param context The context element for a selector.
    */
   function Air(el, context) {
@@ -54,10 +54,10 @@ if(window) {
     if(el instanceof Air) {
       this.dom = el.dom.slice(0);
     }else if(!Array.isArray(el)) {
-      if(!(this.dom instanceof NodeList)) {
-        this.dom = [this.dom];
-      }else{
+      if(this.dom instanceof NodeList) {
         this.dom = Array.prototype.slice.call(this.dom);
+      }else{
+        this.dom = (el instanceof Element) ? [el] : [];
       }
     }
   }
@@ -99,13 +99,13 @@ if(window) {
    *  @param plugins Array of plugin functions.
    */
   function plugin(plugins) {
-    var z, opts = {main: air, clazz: Air, proto: proto, plugin: plugin};
+    var z;
     for(z in plugins) {
       if(typeof plugins[z] === 'function') {
-        plugins[z].call(proto, opts);
+        plugins[z].call(proto);
       // assume object style declaration
       }else{
-        plugins[z].plugin.call(proto, opts, plugins[z].conf);
+        plugins[z].plugin.call(proto, plugins[z].conf);
       }
     }
   }
@@ -126,7 +126,8 @@ if(window) {
 
 },{}],3:[function(require,module,exports){
 /**
- *  Append content to every matched element.
+ *  Insert content, specified by the parameter, to the end of each
+ *  element in the set of matched elements.
  */
 function append(el) {
   var $ = this.air;
@@ -197,6 +198,8 @@ function children() {
   });
   return this.air(arr);
 }
+
+// TODO: allow filtering by selector
 
 module.exports = function() {
   this.children = children;
