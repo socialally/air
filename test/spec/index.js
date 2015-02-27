@@ -8,6 +8,7 @@ module.exports = {
   // plugin tests
   append: require('./append'),
   attr: require('./attr'),
+  children: require('./children'),
   class: require('./class'),
   create: require('./create'),
   data: require('./data'),
