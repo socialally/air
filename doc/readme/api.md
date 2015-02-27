@@ -2,8 +2,6 @@
 
 The main function `air` wraps a set of elements in a class that may be decorated by plugins.
 
-Example code assumes that `air` has been aliased to `$`.
-
 ### Core
 
 Core functionality is the main method, the class function and the pre-defined properties and methods on the class, see [air.js](/lib/air.js).
@@ -11,6 +9,10 @@ Core functionality is the main method, the class function and the pre-defined pr
 #### air(selector, [context])
 
 Returns an `Air` instance.
+
+#### air.Air
+
+Reference to the `Air` constructor.
 
 #### new Air(selector, [context])
 
@@ -23,6 +25,7 @@ The `context` argument is only applicable when a selector `String` argument is u
 When an existing `Air` instance is passed the underlying array is copied but the elements are not cloned.
 
 ```javascript
+var $ = require('air');
 $('body');                                  // String (selector)
 $(document.querySelector('body'));          // Element
 $(document.getElementById('id'));           // Element
@@ -47,3 +50,10 @@ Get the element at the specified index, if no arguments are passed the `dom` arr
 
 Iterate the underlying elements, alias for `dom.forEach`.
 
+##### air(selector, [context])
+
+Alias to the main `air` function, allows instance methods to wrap elements using `this.air()`.
+
+##### plugin(list)
+
+Alias to the `plugin` function, allows instance methods to load plugins via `this.plugin()`.
