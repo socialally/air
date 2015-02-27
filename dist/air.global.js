@@ -99,14 +99,7 @@ if(window) {
    *  @param plugins Array of plugin functions.
    */
   function plugin(plugins) {
-    var z;
-    var opts = {
-      main: air,
-      clazz: Air,
-      proto: proto,
-      plugin: plugin
-    };
-
+    var z, opts = {main: air, clazz: Air, proto: proto, plugin: plugin};
     if(Array.isArray(plugins)) {
       plugins.forEach(function(method) {
         method(opts);
