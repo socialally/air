@@ -102,17 +102,19 @@ if(window) {
     var z, opts = {main: air, clazz: Air, proto: proto, plugin: plugin};
     if(Array.isArray(plugins)) {
       plugins.forEach(function(method) {
-        method(opts);
+        method.call(proto, opts);
       })
     // assume object style definition
     // allows passing runtime configuration to
     // a plugin where necessary
     }else{
       for(z in plugins) {
-        plugins[z].plugin(opts, plugins[z].conf)
+        plugins[z].plugin.call(proto, opts, plugins[z].conf)
       }
     }
   }
+
+  proto.air = air;
 
   air.plugin = plugin;
 
@@ -120,32 +122,28 @@ if(window) {
 })();
 
 },{}],3:[function(require,module,exports){
-;(function() {
-  'use strict'
+'use strict'
 
-  var main;
+/**
+ *  Append content to every matched element.
+ */
+function append(el) {
+  var $ = this.air;
+  // matched parent elements
+  this.each(function(node) {
+    // matched elements to insert
+    $(el).each(function(ins) {
+      // must clone otherwise only the last matched
+      // element will receive the appended element
+      node.appendChild(ins.cloneNode(true));
+    })
+  });
+  return this;
+}
 
-  /**
-   *  Append content to every matched element.
-   */
-  function append(el) {
-    // matched parent elements
-    this.each(function(node) {
-      // matched elements to insert
-      main(el).each(function(ins) {
-        // must clone otherwise only the last matched
-        // element will receive the appended element
-        node.appendChild(ins.cloneNode(true));
-      })
-    });
-    return this;
-  }
-
-  module.exports = function(conf) {
-    main = conf.main;
-    conf.proto.append = append;
-  }
-})();
+module.exports = function() {
+  this.append = append;
+}
 
 },{}],4:[function(require,module,exports){
 ;(function() {
@@ -182,16 +180,14 @@ if(window) {
     return this;
   }
 
-  module.exports = function(conf) {
-    conf.proto.attr = attr;
+  module.exports = function() {
+    this.attr = attr;
   }
 })();
 
 },{}],5:[function(require,module,exports){
 ;(function() {
   'use strict'
-
-  var main;
 
   /**
    *  Get the children of each element in the set of matched elements.
@@ -201,12 +197,11 @@ if(window) {
     this.each(function(el) {
       arr = arr.concat(Array.prototype.slice.call(el.childNodes));
     });
-    return main(arr);
+    return this.air(arr);
   }
 
-  module.exports = function(conf) {
-    main = conf.main;
-    conf.proto.children = children;
+  module.exports = function() {
+    this.children = children;
   }
 })();
 
@@ -277,18 +272,16 @@ if(window) {
     return this;
   }
 
-  module.exports = function(conf) {
-    conf.proto.addClass = addClass;
-    conf.proto.hasClass = hasClass;
-    conf.proto.removeClass = removeClass;
+  module.exports = function() {
+    this.addClass = addClass;
+    this.hasClass = hasClass;
+    this.removeClass = removeClass;
   }
 })();
 
 },{}],7:[function(require,module,exports){
 ;(function() {
   'use strict'
-
-  var main;
 
   /**
    *  Create a deep copy of the set of matched elements.
@@ -298,20 +291,17 @@ if(window) {
     this.each(function(el) {
       arr.push(el.cloneNode(true));
     });
-    return main(arr);
+    return this.air(arr);
   }
 
-  module.exports = function(conf) {
-    main = conf.main;
-    conf.proto.clone = clone;
+  module.exports = function() {
+    this.clone = clone;
   }
 })();
 
 },{}],8:[function(require,module,exports){
 ;(function() {
   'use strict'
-
-  var main;
 
   /**
    *  Create a DOM element.
@@ -329,7 +319,7 @@ if(window) {
    *  @param attrs Object map of element attributes.
    */
   function el(tag, attrs) {
-    var n = main(create(tag));
+    var n = this.air(create(tag));
     if(attrs && n.attr) {
       return n.attr(attrs);
     }
@@ -337,9 +327,8 @@ if(window) {
   }
 
   module.exports = function(conf) {
-    main = conf.main;
-    main.create = create;
-    main.el = el;
+    conf.main.create = create;
+    conf.main.el = el;
   }
 
   // optional `attr` dependency
@@ -363,8 +352,8 @@ if(window) {
     return this;
   }
 
-  module.exports = function(conf) {
-    conf.proto.css = css;
+  module.exports = function() {
+    this.css = css;
   }
 })();
 
@@ -402,8 +391,8 @@ if(window) {
     return this.attr(key, val);
   }
 
-  module.exports = function(conf) {
-    conf.proto.data = data;
+  module.exports = function() {
+    this.data = data;
   }
 
   // required `attr` dependency
@@ -430,9 +419,9 @@ if(window) {
     return this;
   }
 
-  module.exports = function(conf) {
-    conf.proto.width = width;
-    conf.proto.height = height;
+  module.exports = function() {
+    this.width = width;
+    this.height = height;
   }
 })();
 
@@ -450,8 +439,8 @@ if(window) {
     return this;
   }
 
-  module.exports = function(conf) {
-    conf.proto.empty = empty;
+  module.exports = function() {
+    this.empty = empty;
   }
 })();
 
@@ -473,9 +462,9 @@ if(window) {
     return this;
   }
 
-  module.exports = function(conf) {
-    conf.proto.on = on;
-    conf.proto.off = off;
+  module.exports = function() {
+    this.on = on;
+    this.off = off;
   }
 })();
 
@@ -491,8 +480,8 @@ if(window) {
     return this;
   }
 
-  module.exports = function(conf) {
-    conf.proto.first = first;
+  module.exports = function() {
+    this.first = first;
   }
 })();
 
@@ -517,8 +506,8 @@ if(window) {
     return this;
   }
 
-  module.exports = function(conf) {
-    conf.proto.html = html;
+  module.exports = function() {
+    this.html = html;
   }
 })();
 
@@ -534,8 +523,8 @@ if(window) {
     return this;
   }
 
-  module.exports = function(conf) {
-    conf.proto.last = last;
+  module.exports = function() {
+    this.last = last;
   }
 })();
 
@@ -555,8 +544,8 @@ if(window) {
     return this;
   }
 
-  module.exports = function(conf) {
-    conf.proto.remove = remove;
+  module.exports = function() {
+    this.remove = remove;
   }
 })();
 
@@ -576,8 +565,8 @@ if(window) {
     return this;
   }
 
-  module.exports = function(conf) {
-    conf.proto.text = text;
+  module.exports = function() {
+    this.text = text;
   }
 })();
 
