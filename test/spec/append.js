@@ -2,11 +2,10 @@ var $ = require('air')
   , expect = require('chai').expect
   , util = require('../util');
 
-$.plugin([require('append')]);
-
 describe('Append:', function() {
 
   beforeEach(function(done) {
+    $.plugin([require('append')]);
     util.before();
     done();
   })

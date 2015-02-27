@@ -1,12 +1,18 @@
 var $ = require('air')
-  , expect = require('chai').expect;
-
-$.plugin([
-  require('attr'),
-  require('create')
-]);
+  , expect = require('chai').expect
+  , util = require('../util');
 
 describe('Create:', function() {
+
+  beforeEach(function(done) {
+    $.plugin([
+      require('attr'),
+      require('create')
+    ]);
+    util.before();
+    done();
+  })
+  afterEach(util.after);
 
   it('should declare plugin static functions', function(done) {
     expect($.create).to.be.a('function');
@@ -34,7 +40,6 @@ describe('Create:', function() {
       , attrs = {foo: 'bar', bar: 'baz'}
       , div = $.el(tag, attrs)
       , el = div.get(0);
-
     expect(div).to.be.instanceof($.Air);
     expect(el.tagName.toLowerCase()).to.eql(tag);
     expect(el.getAttribute('foo')).to.eql(attrs.foo);
