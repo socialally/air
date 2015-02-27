@@ -122,8 +122,6 @@ if(window) {
 })();
 
 },{}],3:[function(require,module,exports){
-'use strict'
-
 /**
  *  Append content to every matched element.
  */
@@ -146,8 +144,6 @@ module.exports = function() {
 }
 
 },{}],4:[function(require,module,exports){
-'use strict'
-
 function attr(key, val) {
   if(!this.length) {
     return this;
@@ -184,8 +180,6 @@ module.exports = function() {
 }
 
 },{}],5:[function(require,module,exports){
-'use strict'
-
 /**
  *  Get the children of each element in the set of matched elements.
  */
@@ -202,8 +196,6 @@ module.exports = function() {
 }
 
 },{}],6:[function(require,module,exports){
-'use strict'
-
 /**
  *  IE9 does not support `Element.classList`, when support for IE9 is
  *  dropped this can be refactored.
@@ -274,8 +266,6 @@ module.exports = function() {
 }
 
 },{}],7:[function(require,module,exports){
-'use strict'
-
 /**
  *  Create a deep copy of the set of matched elements.
  */
@@ -292,8 +282,6 @@ module.exports = function() {
 }
 
 },{}],8:[function(require,module,exports){
-'use strict'
-
 /**
  *  Create a DOM element.
  *
@@ -326,8 +314,6 @@ module.exports = function(conf) {
 //plugin.deps = {attr: false};
 
 },{}],9:[function(require,module,exports){
-'use strict'
-
 function css(props) {
   if(props === undefined && this.length) {
     return this.dom[0].style;
@@ -346,8 +332,6 @@ module.exports = function() {
 }
 
 },{}],10:[function(require,module,exports){
-'use strict'
-
 var prefix = 'data-';
 
 /**
@@ -386,8 +370,6 @@ module.exports = function() {
 //plugin.deps = {attr: true};
 
 },{}],11:[function(require,module,exports){
-'use strict'
-
 function width() {
   if(!arguments.length && this.length) {
     return this.dom[0].innerWidth;
@@ -410,8 +392,6 @@ module.exports = function() {
 }
 
 },{}],12:[function(require,module,exports){
-'use strict'
-
 /**
  *  Remove the inner HTML from all matched elements.
  */
@@ -427,8 +407,6 @@ module.exports = function() {
 }
 
 },{}],13:[function(require,module,exports){
-'use strict'
-
 function on(nm, cb, capture) {
   this.each(function(el) {
     el.addEventListener(nm, cb, capture);
@@ -449,8 +427,6 @@ module.exports = function() {
 }
 
 },{}],14:[function(require,module,exports){
-'use strict'
-
 /**
  *  Reduce the set of matched elements to the first in the set.
  */
@@ -464,8 +440,6 @@ module.exports = function() {
 }
 
 },{}],15:[function(require,module,exports){
-'use strict'
-
 /**
  *  Get the HTML of the first matched element or set the HTML
  *  content of all matched elements.
@@ -488,8 +462,6 @@ module.exports = function() {
 }
 
 },{}],16:[function(require,module,exports){
-'use strict'
-
 /**
  *  Reduce the set of matched elements to the final one in the set.
  */
@@ -503,8 +475,6 @@ module.exports = function() {
 }
 
 },{}],17:[function(require,module,exports){
-'use strict'
-
 /**
  *  Remove all matched elements.
  */
@@ -522,8 +492,6 @@ module.exports = function() {
 }
 
 },{}],18:[function(require,module,exports){
-'use strict'
-
 function text(txt) {
   if(txt === undefined && this.length) {
     return this.dom[0].textContent !== undefined
