@@ -13,25 +13,36 @@ describe('Dimension:', function() {
   })
   afterEach(util.after);
 
-  it('should return self on no elements', function(done) {
+  it('should return null on no elements', function(done) {
     var el = $();
-    expect(el.width()).to.eql(el);
-    expect(el.height()).to.eql(el);
+    expect(el.width()).to.eql(null);
+    expect(el.height()).to.eql(null);
+
+    expect(el.innerWidth()).to.eql(null);
+    expect(el.innerHeight()).to.eql(null);
     done();
   });
 
-  it('should get element width', function(done) {
+  it('should get element outer width', function(done) {
     var el = $('.dimension');
-    //expect(el.width()).to.eql(100);
     expect(el.outerWidth()).to.eql(92);
+    done();
+  });
+
+  it('should get element outer width w/margin', function(done) {
+    var el = $('.dimension');
     expect(el.outerWidth(true)).to.eql(112);
     done();
   });
 
-  it('should get element height', function(done) {
+  it('should get element outer height', function(done) {
     var el = $('.dimension');
-    //expect(el.height()).to.eql(100);
     expect(el.outerHeight()).to.eql(92);
+    done();
+  });
+
+  it('should get element outer height w/margin', function(done) {
+    var el = $('.dimension');
     expect(el.outerHeight(true)).to.eql(112);
     done();
   });
