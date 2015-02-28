@@ -34,3 +34,17 @@ Designed to work with `HTML` documents the behaviour when modifying `XML` docume
 ### Selector Extensions
 
 The [jquery][] library extends CSS selectors with pseudo-selectors such as `:checked`, we believe this is unnecessary as all selector extension functionality can be achieved using other means.
+
+### Redundancy
+
+We aim to provide a single way to perform a task, the [jquery][] library often provides multiple ways to achieve the same thing, for example:
+
+* `$.get()` and `$.toArray()`
+* `$.append()` and `$.appendTo()`
+* `$.prepend()` and `$.prependTo()`
+
+The `air` library will usually prefer the shorter and most common variant and not supply the alternatives; using the above examples the equivalent functions are `$.get()`, `$.append()` and `$.prepend()`.
+
+### Dimension
+
+Whilst the [jquery][] dimension methods (`width()`, `innerWidth()` etc.) allow setting element dimensions we prefer (for the sake of simplicity) to make these read-only as you can already set element dimensions using the `css` plugin. It is possible that this may change in the future.

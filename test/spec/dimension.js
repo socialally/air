@@ -17,9 +17,10 @@ describe('Dimension:', function() {
     var el = $();
     expect(el.width()).to.eql(null);
     expect(el.height()).to.eql(null);
-
     expect(el.innerWidth()).to.eql(null);
     expect(el.innerHeight()).to.eql(null);
+    expect(el.outerWidth()).to.eql(null);
+    expect(el.outerHeight()).to.eql(null);
     done();
   });
 
