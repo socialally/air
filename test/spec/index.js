@@ -12,6 +12,7 @@ module.exports = {
   class: require('./class'),
   create: require('./create'),
   data: require('./data'),
+  dimension: require('./dimension'),
   empty: require('./empty'),
   find: require('./find'),
   first: require('./first'),

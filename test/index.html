@@ -11,6 +11,14 @@
           left: -2000px;
           top: -2000px;
         }
+
+        .dimension {
+          margin: 10px;
+          padding: 5px;
+          border: 1px solid black;
+          width: 100px;
+          height: 100px;
+        }
     </style>
   </head>
   <body>
@@ -32,6 +40,7 @@
       </div>
       <div class="class foo"></div>
       <div class="data"></div>
+      <div class="dimension"></div>
       <div class="empty">
         <span>a</span>
         <span>b</span>
@@ -65,7 +74,6 @@
         <span>foo</span>
       </div>
     </div>
-
     <script src="../node_modules/mocha/mocha.js"></script>
     <script>
       mocha.setup({
