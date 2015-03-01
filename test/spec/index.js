@@ -20,6 +20,7 @@ module.exports = {
   first: require('./first'),
   html: require('./html'),
   last: require('./last'),
+  prepend: require('./prepend'),
   remove: require('./remove'),
   text: require('./text'),
 }
