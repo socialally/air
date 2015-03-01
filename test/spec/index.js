@@ -12,6 +12,7 @@ module.exports = {
   class: require('./class'),
   clone: require('./clone'),
   create: require('./create'),
+  css: require('./css'),
   data: require('./data'),
   dimension: require('./dimension'),
   empty: require('./empty'),
