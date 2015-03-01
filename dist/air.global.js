@@ -64,6 +64,9 @@ if(window) {
         this.dom = (el instanceof Element) ? [el] : [];
       }
     }
+
+    // undocumented shortcut to Array.prototype.slice
+    this.slice = Array.prototype.slice;
   }
 
   var proto = Air.prototype;
@@ -128,23 +131,21 @@ if(window) {
  *  Insert content, specified by the parameter, to the end of each
  *  element in the set of matched elements.
  */
-function append(el) {
-  var l = this.length, clone = false;
-  // wrap content
-  el = this.air(el);
-  // matched parent elements (targets)
-  this.each(function(node, index) {
-    //console.log(index);
-    //console.log(l);
-    clone = index < (l - 1);
-    //console.log(clone);
+function append() {
+  var i, l = this.length, el, args = this.slice.call(arguments);
+  function it(node, index) {
     // content elements to insert
     el.each(function(ins) {
-      // must clone otherwise only the last matched
-      // element will receive the appended element
-      node.appendChild(clone ? ins.cloneNode(true) : ins);
-    })
-  });
+      ins = (index < (l - 1)) ? ins.cloneNode(true) : ins;
+      node.appendChild(ins);
+    });
+  }
+  for(i = 0;i < args.length;i++) {
+    // wrap content
+    el = this.air(args[i]);
+    // matched parent elements (targets)
+    this.each(it);
+  }
   return this;
 }
 
@@ -211,7 +212,7 @@ module.exports = function() {
  *  optionally filtering by selector.
  */
 function children(selector) {
-  var arr = [], slice = Array.prototype.slice, nodes, matches;
+  var arr = [], slice = this.slice, nodes, matches;
   this.each(function(el) {
     nodes = slice.call(el.childNodes);
     // only include elements
@@ -597,9 +598,9 @@ module.exports = function() {
  *  of matched elements, filtered by a selector.
  */
 function find(selector) {
-  var arr = [], $ = this.air;
+  var arr = [], $ = this.air, slice = this.slice;
   this.each(function(el) {
-    arr = arr.concat(Array.prototype.slice.call($(selector, el).dom));
+    arr = arr.concat(slice.call($(selector, el).dom));
   });
   return $(arr);
 }
