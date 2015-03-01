@@ -129,14 +129,20 @@ if(window) {
  *  element in the set of matched elements.
  */
 function append(el) {
-  var $ = this.air;
-  // matched parent elements
-  this.each(function(node) {
-    // matched elements to insert
-    $(el).each(function(ins) {
+  var l = this.length, clone = false;
+  // wrap content
+  el = this.air(el);
+  // matched parent elements (targets)
+  this.each(function(node, index) {
+    //console.log(index);
+    //console.log(l);
+    clone = index < (l - 1);
+    //console.log(clone);
+    // content elements to insert
+    el.each(function(ins) {
       // must clone otherwise only the last matched
       // element will receive the appended element
-      node.appendChild(ins.cloneNode(true));
+      node.appendChild(clone ? ins.cloneNode(true) : ins);
     })
   });
   return this;
@@ -210,7 +216,7 @@ function children(selector) {
     nodes = slice.call(el.childNodes);
     // only include elements
     nodes = nodes.filter(function(n) {
-      if(n instanceof Element) return n;
+      if(n instanceof Element) { return n;}
     })
     // filter direct descendants by selector
     if(selector) {
@@ -363,17 +369,41 @@ module.exports = function() {
 //plugin.deps = {attr: false};
 
 },{}],9:[function(require,module,exports){
-// TODO: return from window.getComputedStyle() so that
-// TODO: this method also retrieves styles declared in stylesheets
-
-function css(props) {
-  if(props === undefined && this.length) {
-    return this.dom[0].style;
+/**
+ *  Get the value of a computed style property for the first element
+ *  in the set of matched elements or set one or more CSS properties
+ *  for every matched element.
+ */
+function css(key, val) {
+  var style, props;
+  if(!this.length) {
+    return this;
   }
+
+  if(key && typeof key === 'object') {
+    props = key;
+  }else if(key && val) {
+    props = {};
+    props[key] = val;
+  }
+
+  // get style object
+  if(key === undefined) {
+    style = window.getComputedStyle(this.dom[0], null);
+    // TODO: convert to plain object map?
+    // for the moment return CSSStyleDeclaration
+    return style;
+  // get single style property value
+  }else if(typeof key === 'string' && !val) {
+    style = window.getComputedStyle(this.dom[0], null);
+    return style.getPropertyValue(key);
+  }
+
+  // set inline styles
   this.each(function(el) {
     el.style = el.style || {};
     for(var z in props) {
-      el.style[z] = props[z];
+      el.style[z] = '' + props[z];
     }
   });
   return this;
@@ -422,35 +452,108 @@ module.exports = function() {
 //plugin.deps = {attr: true};
 
 },{}],11:[function(require,module,exports){
-function width(num) {
+/**
+ *  Get the current computed inner width (including padding but not border)
+ *  for the first element in the set of matched elements.
+ */
+function innerWidth() {
   var style;
   if(!this.length) {
-    return this;
+    return null;
   }
-  if(num === undefined) {
-    style = window.getComputedStyle(this.dom[0], null);
-    return parseInt(style.getPropertyValue('width'));
-  }
-  // TODO: set element(s) width
-  return this;
+  style = window.getComputedStyle(this.dom[0], null);
+  return parseInt(style.getPropertyValue('width'));
 }
 
-function height(num) {
+/**
+ *  Get the current computed inner height (including padding but not border)
+ *  for the first element in the set of matched elements.
+ */
+function innerHeight() {
   var style;
   if(!this.length) {
-    return this;
+    return null;
   }
-  if(num === undefined) {
+  style = window.getComputedStyle(this.dom[0], null);
+  return parseInt(style.getPropertyValue('height'));
+}
+
+/**
+ *  Get the current computed width for the first element in the set of
+ *  matched elements, including padding, border, and optionally margin.
+ *
+ *  Returns a number (without "px") representation of the value or null
+ *  if called on an empty set of elements.
+ */
+function outerWidth(margin) {
+  var s, style;
+  if(!this.length) {
+    return null;
+  }
+  s = this.dom[0].getClientRects()[0].width;
+  if(!margin) {
     style = window.getComputedStyle(this.dom[0], null);
-    return parseInt(style.getPropertyValue('height'));
+    s -= parseInt(style.getPropertyValue('margin-top'));
+    s -= parseInt(style.getPropertyValue('margin-bottom'));
   }
-  // TODO: set element(s) height
-  return this;
+  return s;
+}
+
+/**
+ *  Get the current computed height for the first element in the set of
+ *  matched elements, including padding, border, and optionally margin.
+ *
+ *  Returns a number (without "px") representation of the value or null
+ *  if called on an empty set of elements.
+ */
+function outerHeight(margin) {
+  var s, style;
+  if(!this.length) {
+    return null;
+  }
+  s = this.dom[0].getClientRects()[0].height;
+  if(!margin) {
+    style = window.getComputedStyle(this.dom[0], null);
+    s -= parseInt(style.getPropertyValue('margin-top'));
+    s -= parseInt(style.getPropertyValue('margin-bottom'));
+  }
+  return s;
+}
+
+/**
+ *
+ */
+function width() {
+  var style;
+  if(!this.length) {
+    return null;
+  }
+  //console.log(this.dom[0].getClientRects())
+  style = window.getComputedStyle(this.dom[0], null);
+  return parseInt(style.getPropertyValue('width'));
+}
+
+/**
+ *
+ */
+function height() {
+  var style;
+  if(!this.length) {
+    return null;
+  }
+  style = window.getComputedStyle(this.dom[0], null);
+  return parseInt(style.getPropertyValue('height'));
 }
 
 module.exports = function() {
   this.width = width;
   this.height = height;
+
+  this.outerWidth = outerWidth;
+  this.outerHeight = outerHeight;
+
+  this.innerWidth = innerWidth;
+  this.innerHeight = innerHeight;
 }
 
 },{}],12:[function(require,module,exports){
