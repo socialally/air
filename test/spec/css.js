@@ -21,15 +21,15 @@ describe('Css:', function() {
 
   it('should return null for non-existent style property', function(done) {
     var el = $('.css');
-    expect(el.css('non-existent-style')).to.eql(null);
+    expect(Boolean(el.css('non-existent-style'))).to.eql(false);
     done();
   });
 
   it('should get all styles', function(done) {
     var el = $('.css')
       , styles = el.css();
-
     expect(styles).to.be.an('object');
+    expect(styles.color).to.be.a('string');
     done();
   });
 
@@ -39,6 +39,23 @@ describe('Css:', function() {
       , background = el.css('background-color');
     expect(color).to.be.a('string');
     expect(background).to.be.a('string');
+    done();
+  });
+
+  it('should set style property', function(done) {
+    var el = $('.css');
+    expect(el.css('position', 'relative')).to.eql(el);
+    expect(el.css('position')).to.eql('relative');
+    done();
+  });
+
+  it('should set style property', function(done) {
+    var el = $('.css')
+      , props = {position: 'absolute', left: '5px', top: '5px'};
+    expect(el.css(props)).to.eql(el);
+    expect(el.css('position')).to.eql('absolute');
+    expect(el.css('left')).to.eql('5px');
+    expect(el.css('top')).to.eql('5px');
     done();
   });
 
