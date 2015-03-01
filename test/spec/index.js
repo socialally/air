@@ -10,6 +10,7 @@ module.exports = {
   attr: require('./attr'),
   children: require('./children'),
   class: require('./class'),
+  clone: require('./clone'),
   create: require('./create'),
   data: require('./data'),
   dimension: require('./dimension'),
