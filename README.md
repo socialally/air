@@ -16,8 +16,8 @@ Table of Contents
         * [each(iterator)](#eachiterator)
         * [air(selector, [context])](#airselector-context-1)
         * [plugin(list)](#pluginlist)
+  * [Plugin Guide](#plugin-guide)
   * [Plugins](#plugins)
-  * [Plugins](#plugins-1)
     * [append](#append)
     * [attr](#attr)
     * [children](#children)
@@ -150,7 +150,7 @@ Alias to the main `air` function, allows instance methods to wrap elements using
 
 Alias to the `plugin` function, allows instance methods to load plugins via `this.plugin()`.
 
-## Plugins
+## Plugin Guide
 
 Plugin functionality is provided by [zephyr](https://github.com/socialally/zephyr) see the [zephyr plugins](https://github.com/socialally/zephyr#plugins) documentation.
 
