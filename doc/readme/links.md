@@ -11,4 +11,7 @@
 [systemjs]: https://github.com/systemjs/systemjs
 [xss]: http://en.wikipedia.org/wiki/Cross-site_scripting
 [storage]: https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API
+
+[zephyr]: https://github.com/socialally/zephyr
+[zephyr-plugins]: https://github.com/socialally/zephyr#plugins
 [mdp]: https://github.com/freeformsystems/mdp
