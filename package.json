@@ -1,6 +1,6 @@
 {
   "name": "air",
-  "version": "0.1.10",
+  "version": "0.1.11",
   "description": "Lightweight, modular DOM library",
   "author": "muji <noop@xpm.io>",
   "publishConfig": {
