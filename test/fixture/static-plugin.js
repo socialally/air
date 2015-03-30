@@ -9,6 +9,6 @@
   }
 
   module.exports = function plugin() {
-    this.air.method = method;
+    this.main.method = method;
   }
 })();

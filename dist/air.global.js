@@ -33,6 +33,8 @@ if(window) {
 ;(function() {
   'use strict'
 
+  var zephyr = require('zephyr');
+
   /**
    *  Chainable wrapper class.
    *
@@ -50,6 +52,9 @@ if(window) {
    *  @param context The context element for a selector.
    */
   function Air(el, context) {
+    if(!(this instanceof Air)) {
+      return new Air(el, context);
+    }
     if(typeof context === 'string') {
       context = document.querySelector(context);
     }
@@ -61,7 +66,7 @@ if(window) {
       if(this.dom instanceof NodeList) {
         this.dom = Array.prototype.slice.call(this.dom);
       }else{
-        this.dom = (el instanceof Element) ? [el] : [];
+        this.dom = (el instanceof Element || el === window) ? [el] : [];
       }
     }
 
@@ -69,7 +74,7 @@ if(window) {
     this.slice = Array.prototype.slice;
   }
 
-  var proto = Air.prototype;
+  var proto = Air.prototype = new zephyr.Type();
 
   /**
    *  Get the number of wrapped DOM elements.
@@ -93,40 +98,19 @@ if(window) {
     return this;
   }
 
-  /**
-   *  Main function, see the documentation for the `Air` class.
-   */
-  function air(el, context) {
-    return new Air(el, context);
-  }
-
-  /**
-   *  Static plugin method.
-   *
-   *  @param plugins Array of plugin functions.
-   */
-  function plugin(plugins) {
-    var z;
-    for(z in plugins) {
-      if(typeof plugins[z] === 'function') {
-        plugins[z].call(proto);
-      // assume object style declaration
-      }else{
-        plugins[z].plugin.call(proto, plugins[z].conf);
-      }
-    }
-  }
-
-  // main plugin method
-  air.plugin = proto.plugin = plugin;
+  // construct Air instances from main function
+  zephyr.Type = Air;
 
   // expose class reference
-  air.Air = Air;
+  zephyr.Air = Air;
 
-  module.exports = proto.air = air;
+  // alias main function
+  proto.air = zephyr;
+
+  module.exports = zephyr;
 })();
 
-},{}],3:[function(require,module,exports){
+},{"zephyr":20}],3:[function(require,module,exports){
 /**
  *  Insert content, specified by the parameter, to the end of each
  *  element in the set of matched elements.
@@ -360,10 +344,10 @@ function el(tag, attrs) {
 module.exports = function() {
   // static method needs access to main function
   // to wrap the created element
-  el.air = this.air;
+  el.air = this.main;
 
-  this.air.create = create;
-  this.air.el = el;
+  this.main.create = create;
+  this.main.el = el;
 }
 
 // optional `attr` dependency
@@ -529,6 +513,10 @@ function width() {
   if(!this.length) {
     return null;
   }
+  //console.log(this.dom[0]);
+  if(this.dom[0] instanceof Window) {
+    return this.dom[0].innerWidth;
+  }
   //console.log(this.dom[0].getClientRects())
   style = window.getComputedStyle(this.dom[0], null);
   return parseInt(style.getPropertyValue('width'));
@@ -541,6 +529,9 @@ function height() {
   var style;
   if(!this.length) {
     return null;
+  }
+  if(this.dom[0] instanceof Window) {
+    return this.dom[0].innerHeight;
   }
   style = window.getComputedStyle(this.dom[0], null);
   return parseInt(style.getPropertyValue('height'));
@@ -716,5 +707,79 @@ function text(txt) {
 module.exports = function() {
   this.text = text;
 }
+
+},{}],20:[function(require,module,exports){
+;(function() {
+  'use strict'
+
+  var hooks = [];
+
+  /**
+   *  Abstract plugin class.
+   */
+  function Zephyr() {
+    // invoke constructor hooks
+    for(var i = 0;i < hooks.length;i++) {
+      hooks[i].apply(this, arguments);
+    }
+  }
+
+  var proto = Zephyr.prototype;
+
+  /**
+   *  Register a method to be invoked when the class
+   *  is instantiated.
+   *
+   *  @param hook A function to be invoked on construction.
+   */
+  function register(hook) {
+    if(typeof hook === 'function') {
+      hooks.push(hook);
+    }
+  }
+
+  /**
+   *  Plugin method.
+   *
+   *  @param plugins Array of plugin functions.
+   */
+  function plugin(plugins) {
+    var z;
+    for(z in plugins) {
+      if(typeof plugins[z] === 'function') {
+        plugins[z].call(proto);
+      // assume object style declaration
+      }else{
+        plugins[z].plugin.call(proto, plugins[z].conf);
+      }
+    }
+  }
+
+  /**
+   *  Create an instance of the class represented by *main* and proxy
+   *  all arguments to the constructor.
+   */
+  function construct() {
+    var args = [null].concat(Array.prototype.slice.call(arguments));
+    return new (Function.prototype.bind.apply(construct.Type, args));
+  }
+
+  // class to construct
+  construct.Type = Zephyr;
+
+  // static and instance plugin method
+  construct.plugin = proto.plugin = plugin;
+
+  // hook register method, available to plugins via *this.register()*
+  proto.register = register;
+
+  // expose instantiation hooks, users may wish to manually modify
+  proto.hooks = hooks;
+
+  // reference to the main function for static assignment
+  proto.main = construct;
+
+  module.exports = construct;
+})();
 
 },{}]},{},[1]);
