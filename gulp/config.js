@@ -8,7 +8,7 @@ var config = {
   ],
   spec: {
     main: './test/spec/index.js',
-    paths: ['./lib', './test/fixture'],
+    paths: ['./lib', './test/fixture', './lib/air'],
     map: './',
     dest: './test',
     source: 'spec.js'
@@ -16,7 +16,7 @@ var config = {
   cover: {
     file: './coverage/coverage.json',
     main: './test/spec/index.js',
-    paths: ['./instrument', './test/fixture'],
+    paths: ['./instrument', './test/fixture', './lib/air'],
     map: './',
     dest: './test',
     source: 'spec.js'
@@ -24,7 +24,7 @@ var config = {
   dist: {
     global: {
       main: './gulp/build/global.js',
-      paths: ['./lib'],
+      paths: ['./lib', './lib/air'],
       map: false,
       dest: './dist',
       source: 'air.global.js'
