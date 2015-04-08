@@ -16,7 +16,7 @@ var config = {
   cover: {
     file: './coverage/coverage.json',
     main: './test/spec/index.js',
-    paths: ['./instrument', './test/fixture', './lib/air'],
+    paths: ['./instrument', './test/fixture', './instrument/air'],
     map: './',
     dest: './test',
     source: 'spec.js'

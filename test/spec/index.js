@@ -17,6 +17,7 @@ module.exports = {
   empty: require('./empty'),
   find: require('./find'),
   first: require('./first'),
+  hidden: require('./hidden'),
   html: require('./html'),
   last: require('./last'),
   prepend: require('./prepend'),
