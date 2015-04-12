@@ -10,7 +10,7 @@ gulp.task('cover', ['cover-spec'], function () {
         hooks: 'mocha-phantomjs-istanbul',
         coverageFile: config.file
       },
-      reporter: 'spec'
+      reporter: 'list'
     }))
     .on('finish', function() {
       gulp.src(config.file)
