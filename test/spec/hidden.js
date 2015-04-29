@@ -14,13 +14,9 @@ describe('Attr:', function() {
   })
   afterEach(util.after);
 
-  it('should set hidden attribute (no arguments)', function(done) {
+  it('should get hidden attribute (no arguments)', function(done) {
     var el = $('.hidden');
-    expect(el.hidden()).to.equal(el);
-
-    var attrs = el.attr();
-    expect(attrs).to.be.an('object');
-    expect(attrs.hidden).to.eql('1');
+    expect(el.hidden()).to.equal(null);
     done();
   });
 
@@ -30,12 +26,14 @@ describe('Attr:', function() {
     var attrs = el.attr();
     expect(attrs).to.be.an('object');
     expect(attrs.hidden).to.eql(undefined);
+    expect(el.hidden()).to.equal(null);
     done();
   });
 
   it('should set hidden attribute (hide)', function(done) {
     var el = $('.hidden');
     expect(el.hide()).to.equal(el);
+    expect(el.hidden()).to.equal('1');
 
     var attrs = el.attr();
     expect(attrs).to.be.an('object');
