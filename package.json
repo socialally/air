@@ -4,7 +4,7 @@
   "description": "Lightweight, modular DOM library",
   "author": "muji <noop@xpm.io>",
   "publishConfig": {
-    "registry": "https://registry.socialal.ly",
+    "registry": "https://registry.socialally.co",
     "ca": null
   },
   "repository": {
