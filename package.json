@@ -12,36 +12,30 @@
     "url": "git://github.com/socialally/air.git"
   },
   "dependencies": {
-    "zephyr": "~1.2.6"
+    "zephyr": "~1.2.7"
   },
   "devDependencies": {
-    "brfs": "~1.4.0",
-    "browserify": "~9.0.3",
-    "chai": "~2.1.0",
-    "del": "~1.1.1",
-    "gulp": "~3.8.11",
-    "gulp-eslint": "~0.5.0",
-    "gulp-istanbul": "~0.6.0",
+    "browser-sync": "~2.8.2",
+    "browserify": "~11.0.1",
+    "chai": "~3.2.0",
+    "del": "~1.2.0",
+    "gulp": "~3.9.0",
+    "gulp-eslint": "~1.0.0",
     "gulp-istanbul-report": "0.0.1",
-    "gulp-mocha": "~2.0.0",
-    "gulp-mocha-phantomjs": "~0.5.3",
+    "gulp-mocha-phantomjs": "~0.8.1",
     "gulp-size": "~1.2.1",
-    "gulp-sourcemaps": "~1.4.0",
-    "gulp-uglify": "~1.1.0",
+    "gulp-sourcemaps": "~1.5.2",
+    "gulp-uglify": "~1.2.0",
     "gulp-util": "~3.0.4",
     "istanbul": "~0.3.6",
     "merge": "~1.2.0",
-    "mocha": "~2.1.0",
-    "mocha-phantomjs-istanbul": "0.0.2",
-    "require-dir": "~0.1.0",
-    "run-sequence": "~1.0.2",
+    "mocha": "~2.2.5",
+    "mocha-phantomjs-istanbul": "~0.0.2",
+    "require-dir": "~0.3.0",
+    "run-sequence": "~1.1.2",
     "vinyl-buffer": "~1.0.0",
-    "vinyl-source-stream": "~1.0.0",
-    "watchify": "socialally/watchify"
+    "vinyl-source-stream": "~1.1.0"
   },
-  "engine": [
-    "node >= 0.10.11"
-  ],
   "scripts": {
     "docs": "npm run readme",
     "readme": "mdp --force -v",

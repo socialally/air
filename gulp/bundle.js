@@ -9,7 +9,6 @@ var gulp = require('gulp')
 
 function create(opts) {
   var b = browserify(opts.main, opts);
-  b.transform('brfs');
   return b;
 }
 
