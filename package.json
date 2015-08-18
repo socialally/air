@@ -1,7 +1,8 @@
 {
   "name": "air",
-  "version": "0.3.1",
   "description": "Lightweight, modular DOM library",
+  "version": "0.3.1",
+  "stability": "unstable",
   "author": "muji <noop@xpm.io>",
   "publishConfig": {
     "registry": "https://registry.socialally.co",
@@ -56,6 +57,10 @@
     "toc": "Table of Contents",
     "base": "https://github.com/socialally/air",
     "partial": [
+      {
+        "ref": "stability",
+        "format": "> `Stability: %s`"
+      },
       {
         "inc": [
           "introduction.md",
