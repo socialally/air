@@ -13,7 +13,7 @@
     "url": "git://github.com/socialally/air.git"
   },
   "dependencies": {
-    "zephyr": "~1.2.7"
+    "zephyr": "~1.3.0"
   },
   "devDependencies": {
     "browser-sync": "~2.8.2",
