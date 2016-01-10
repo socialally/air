@@ -1,3 +1,7 @@
+[![Build Status](https://travis-ci.org/tmpfs/air.svg)](https://travis-ci.org/tmpfs/air)
+[![npm version](http://img.shields.io/npm/v/air.svg)](https://npmjs.org/package/air)
+[![Coverage Status](https://coveralls.io/repos/tmpfs/air/badge.svg?branch=master&service=github&v=1)](https://coveralls.io/github/tmpfs/air?branch=master)
+
 Lightweight, modular DOM library.
 
 Browser targets are relatively *modern browsers* from IE9+, Chrome, Firefox, Safari and modern versions of Opera (post [blink][] integration).
