@@ -6,7 +6,8 @@ describe('Clone:', function() {
 
   beforeEach(function(done) {
     $.plugin([
-      require('clone')
+      // qualified path to prevent require conflict (node 5)
+      require('air/clone')
     ]);
     util.before();
     done();
