@@ -2,15 +2,11 @@
   "name": "air",
   "description": "Lightweight, modular DOM library",
   "version": "0.4.4",
-  "stability": "unstable",
   "author": "muji <noop@xpm.io>",
-  "publishConfig": {
-    "registry": "https://registry.socialally.co",
-    "ca": null
-  },
+  "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git://github.com/socialally/air.git"
+    "url": "git://github.com/tmpfs/air.git"
   },
   "dependencies": {
     "zephyr": "~1.3.2"
@@ -19,6 +15,7 @@
     "browser-sync": "~2.8.2",
     "browserify": "~11.0.1",
     "chai": "~3.2.0",
+    "coveralls": "~2.11.6",
     "del": "~1.2.0",
     "gulp": "~3.9.0",
     "gulp-eslint": "~1.0.0",
@@ -44,9 +41,10 @@
     "dist": "gulp dist",
     "clean": "gulp clean",
     "spec": "gulp spec",
+    "test": "gulp test",
     "instrument": "istanbul instrument --output instrument lib",
     "cover": "npm run instrument && gulp cover",
-    "test": "gulp test"
+    "coveralls": "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js"
   },
   "mdp": {
     "title": "Air",
@@ -55,12 +53,8 @@
     "require": "lib",
     "links": "links.md",
     "toc": "Table of Contents",
-    "base": "https://github.com/socialally/air",
+    "base": "https://github.com/tmpfs/air",
     "partial": [
-      {
-        "ref": "stability",
-        "format": "> `Stability: %s`"
-      },
       {
         "inc": [
           "introduction.md",
