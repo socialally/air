@@ -6,8 +6,6 @@ describe('Core:', function() {
 
   it('should use zero arguments', function(done) {
     var el = $();
-    console.log('' + el.dom);
-    console.log('' + el.length);
     expect(el.length).to.eql(0);
     expect(el.dom).to.be.an('array');
     done();

@@ -18,4 +18,9 @@ describe('Remove:', function() {
     done();
   });
 
+  it('should not remove window (no parentNode)', function(done) {
+    expect($(window).remove().length).eql(1);
+    done();
+  });
+
 });
