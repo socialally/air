@@ -14,4 +14,4 @@
 
 [zephyr]: https://github.com/socialally/zephyr
 [zephyr-plugins]: https://github.com/socialally/zephyr#plugins
-[mdp]: https://github.com/freeformsystems/mdp
+[mdp]: https://github.com/tmpfs/mdp
