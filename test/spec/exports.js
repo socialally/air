@@ -9,4 +9,10 @@ describe('Core:', function() {
     done();
   });
 
+  it('should return air instance from constructor call', function(done) {
+    // trigger code path
+    expect($.Type()).to.be.instanceof($.Type);
+    done();
+  });
+
 });
