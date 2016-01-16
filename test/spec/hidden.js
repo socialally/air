@@ -40,4 +40,29 @@ describe('Attr:', function() {
     expect(attrs.hidden).to.eql('1');
     done();
   });
+
+  it('should remove hidden attribute w/function (show)', function(done) {
+    var el = $('.hidden');
+    function onShow() {
+      var attrs = el.attr();
+      expect(attrs).to.be.an('object');
+      expect(attrs.hidden).to.eql(undefined);
+      expect(el.hidden()).to.equal(null);
+      done();
+    }
+    expect(el.show(onShow)).to.equal(el);
+  });
+
+  it('should set hidden attribute w/function (show)', function(done) {
+    var el = $('.hidden');
+    function onHide() {
+      expect(el.hidden()).to.equal('1');
+      var attrs = el.attr();
+      expect(attrs).to.be.an('object');
+      expect(attrs.hidden).to.eql('1');
+      done();
+    }
+    expect(el.hide(onHide)).to.equal(el);
+  });
+
 });
