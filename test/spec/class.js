@@ -77,4 +77,14 @@ describe('Class:', function() {
     done();
   });
 
+  it('should toggle class name', function(done) {
+    // add the class
+    $('.toggle-class').toggleClass('foo');
+    expect($('.toggle-class').hasClass('foo')).to.eql(true);
+    // remove it
+    $('.toggle-class').toggleClass('foo');
+    expect($('.toggle-class').hasClass('foo')).to.eql(false);
+    done();
+  });
+
 });
