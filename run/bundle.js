@@ -12,7 +12,7 @@ function create(opts) {
   return b;
 }
 
-function bundle(opts, cb) {
+function bundle(opts) {
   var bundler = create(opts);
   return bundler.bundle()
     .on('error', gutil.log)

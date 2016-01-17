@@ -18,7 +18,6 @@
     "coveralls": "~2.11.6",
     "del": "~2.2.0",
     "gulp": "~3.9.0",
-    "gulp-eslint": "~1.0.0",
     "gulp-istanbul-report": "0.0.1",
     "gulp-mocha-phantomjs": "~0.8.1",
     "gulp-size": "~1.2.1",
@@ -37,7 +36,7 @@
   "scripts": {
     "docs": "npm run readme",
     "readme": "mdp --force -v",
-    "lint": "gulp lint",
+    "lint": "jshint . && jscs .",
     "dist": "gulp dist",
     "clean": "gulp clean",
     "spec": "gulp spec",

@@ -6,7 +6,7 @@ var config = {
     './coverage',
     './test/spec.*',
     './dist/*.js',
-    './dist/*.js.map',
+    './dist/*.js.map'
   ],
   spec: {
     main: './test/spec/index.js',

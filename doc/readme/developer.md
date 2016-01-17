@@ -22,7 +22,7 @@ npm run cover
 
 ### Lint
 
-Run the source tree through [eslint][]:
+Run the source tree through [jshint][] and [jscs][]:
 
 ```
 npm run lint

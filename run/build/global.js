@@ -1,7 +1,7 @@
 var air = require('air');
 
 module.exports = {
-  air: air,
+  air: air
 }
 
 air.plugin([
@@ -21,7 +21,7 @@ air.plugin([
   require('html'),
   require('last'),
   require('remove'),
-  require('text'),
+  require('text')
 ])
 
 if(window) {

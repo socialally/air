@@ -43,5 +43,5 @@ module.exports = {
   selector: selector,
   before: before,
   after: after,
-  clean: clean,
+  clean: clean
 }

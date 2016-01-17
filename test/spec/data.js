@@ -40,7 +40,8 @@ describe('Data:', function() {
   });
 
   it('should ignore invalid argument', function(done) {
-    var el = $('.data').data(false);
+    // trigger code path
+    $('.data').data(false);
     done();
   });
 

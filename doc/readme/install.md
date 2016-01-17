@@ -9,5 +9,5 @@ Note that currently we do not own the `air` package and we are attempting to res
 In the meantime you can depend upon the git repository:
 
 ```
-"air": "socialally/air"
+"air": "tmpfs/air"
 ```
