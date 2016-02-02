@@ -57,9 +57,9 @@
       {
         "inc": [
           "introduction.md",
+          "install.md",
           "design.md",
           "usage.md",
-          "install.md",
           "api.md",
           "plugins.md",
           "plugin.md",

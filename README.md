@@ -2,9 +2,9 @@ Table of Contents
 =================
 
 * [Air](#air)
+  * [Install](#install)
   * [Design](#design)
   * [Usage](#usage)
-  * [Install](#install)
   * [API](#api)
     * [Core](#core)
       * [air(selector, [context])](#airselector-context)
@@ -59,6 +59,12 @@ This library is not designed to be a drop-in replacement for [jquery](http://jqu
 
 ***Work in progress: not yet ready for production***.
 
+## Install
+
+```
+npm i air --save
+```
+
 ## Design
 
 Whilst the API is similar to [jquery](http://jquery.com) some notable design decisions:
@@ -78,12 +84,6 @@ var $ = require('air');
 $.plugin([
   require('event')
 ])
-```
-
-## Install
-
-```
-npm i air --save
 ```
 
 ## API
