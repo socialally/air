@@ -1,7 +1,7 @@
 {
   "name": "air",
   "description": "Lightweight, modular DOM library",
-  "version": "0.4.9",
+  "version": "0.4.10",
   "author": "muji <noop@xpm.io>",
   "license": "MIT",
   "repository": {
