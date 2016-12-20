@@ -13,6 +13,6 @@
 
 [jshint]: http://jshint.com
 [jscs]: http://jscs.info
-[zephyr]: https://github.com/tmpfs/zephyr
-[zephyr-plugins]: https://github.com/tmpfs/zephyr#plugins
+[zephyr]: https://github.com/socialally/zephyr
+[zephyr-plugins]: https://github.com/socialally/zephyr#plugins
 [mdp]: https://github.com/tmpfs/mdp

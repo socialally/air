@@ -47,9 +47,9 @@ Table of Contents
 Air
 ===
 
-[<img src="https://travis-ci.org/tmpfs/air.svg" alt="Build Status">](https://travis-ci.org/tmpfs/air)
+[<img src="https://travis-ci.org/socialally/air.svg" alt="Build Status">](https://travis-ci.org/socialally/air)
 [<img src="http://img.shields.io/npm/v/air.svg" alt="npm version">](https://npmjs.org/package/air)
-[<img src="https://coveralls.io/repos/tmpfs/air/badge.svg?branch=master&service=github&v=2" alt="Coverage Status">](https://coveralls.io/github/tmpfs/air?branch=master).
+[<img src="https://coveralls.io/repos/socialally/air/badge.svg?branch=master&service=github&v=2" alt="Coverage Status">](https://coveralls.io/github/socialally/air?branch=master).
 
 Lightweight, modular DOM library.
 
@@ -73,7 +73,7 @@ Whilst the API is similar to [jquery](http://jquery.com) some notable design dec
 * No global variables.
 * Stay focused, see [compatibility](#compatibility).
 
-To get a feel for how lightweight `air` is see [air.js](https://github.com/tmpfs/air/blob/master/lib/air.js), the core of the system is less than 100 lines of code (with comments). All other files in [lib](https://github.com/tmpfs/air/blob/master/lib) are plugins that should be loaded depending upon your application requirements.
+To get a feel for how lightweight `air` is see [air.js](https://github.com/socialally/air/blob/master/lib/air.js), the core of the system is less than 100 lines of code (with comments). All other files in [lib](https://github.com/socialally/air/blob/master/lib) are plugins that should be loaded depending upon your application requirements.
 
 ## Usage
 
@@ -94,7 +94,7 @@ The main function `air` wraps a set of elements in a class that may be decorated
 
 ### Core
 
-Core functionality is the main method, the class function and the pre-defined properties and methods on the class, see [air.js](https://github.com/tmpfs/air/blob/master/lib/air.js).
+Core functionality is the main method, the class function and the pre-defined properties and methods on the class, see [air.js](https://github.com/socialally/air/blob/master/lib/air.js).
 
 #### air(selector, [context])
 
@@ -150,13 +150,13 @@ Alias to the `plugin` function, allows instance methods to load plugins via `thi
 
 ## Plugin Guide
 
-Plugin functionality is provided by [zephyr](https://github.com/tmpfs/zephyr) see the [zephyr plugins](https://github.com/tmpfs/zephyr#plugins) documentation.
+Plugin functionality is provided by [zephyr](https://github.com/socialally/zephyr) see the [zephyr plugins](https://github.com/socialally/zephyr#plugins) documentation.
 
 ## Plugins
 
 Default plugins that may be loaded on demand, syntax examples assume that `air` has been aliased to `$`.
 
-Everything except the [core methods](#core) are implemented as plugins so there are many examples in [lib](https://github.com/tmpfs/air/blob/master/lib).
+Everything except the [core methods](#core) are implemented as plugins so there are many examples in [lib](https://github.com/socialally/air/blob/master/lib).
 
 ### append
 
@@ -166,7 +166,7 @@ Insert content, specified by the parameter, to the end of each element in the se
 $(selector, [context]).append(content);
 ```
 
-* File: [append.js](https://github.com/tmpfs/air/blob/master/lib/append.js).
+* File: [append.js](https://github.com/socialally/air/blob/master/lib/append.js).
 * Dependencies: none.
 
 ### attr
@@ -179,7 +179,7 @@ $(selector, [context]).attr(name, value);
 $(selector, [context]).attr(attributes);
 ```
 
-* File: [attr.js](https://github.com/tmpfs/air/blob/master/lib/attr.js).
+* File: [attr.js](https://github.com/socialally/air/blob/master/lib/attr.js).
 * Dependencies: none.
 
 ### children
@@ -190,7 +190,7 @@ Get the children of each element in the set of matched elements.
 $(selector, [context]).children();
 ```
 
-* File: [children.js](https://github.com/tmpfs/air/blob/master/lib/children.js).
+* File: [children.js](https://github.com/socialally/air/blob/master/lib/children.js).
 * Dependencies: none.
 
 ## Plugin Groups
@@ -201,7 +201,7 @@ Plugin groups provide a convenient way to load related plugins.
 
 Element attribute plugins.
 
-* File: [attributes.js](https://github.com/tmpfs/air/blob/master/lib/attributes.js).
+* File: [attributes.js](https://github.com/socialally/air/blob/master/lib/attributes.js).
 * Plugins: [attr](#attr), [class](#class), [data](#data).
 
 ## Compatibility
@@ -267,7 +267,7 @@ Run the headless test suite using [phantomjs](http://phantomjs.org):
 npm test
 ```
 
-To run the tests in a browser context open [test/index.html](https://github.com/tmpfs/air/blob/master/test/index.html).
+To run the tests in a browser context open [test/index.html](https://github.com/socialally/air/blob/master/test/index.html).
 
 ### Cover
 
@@ -295,7 +295,7 @@ npm run clean
 
 ### Dist
 
-Create distribution builds in [dist](https://github.com/tmpfs/air/blob/master/dist):
+Create distribution builds in [dist](https://github.com/socialally/air/blob/master/dist):
 
 ```
 npm run dist
@@ -332,7 +332,7 @@ npm run readme
 
 ## License
 
-Everything is [MIT](http://en.wikipedia.org/wiki/MIT_License). Read the [license](https://github.com/tmpfs/air/blob/master/LICENSE) if you feel inclined.
+Everything is [MIT](http://en.wikipedia.org/wiki/MIT_License). Read the [license](https://github.com/socialally/air/blob/master/LICENSE) if you feel inclined.
 
 Generated by [mdp(1)](https://github.com/tmpfs/mdp).
 
@@ -350,6 +350,6 @@ Generated by [mdp(1)](https://github.com/tmpfs/mdp).
 [storage]: https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API
 [jshint]: http://jshint.com
 [jscs]: http://jscs.info
-[zephyr]: https://github.com/tmpfs/zephyr
-[zephyr-plugins]: https://github.com/tmpfs/zephyr#plugins
+[zephyr]: https://github.com/socialally/zephyr
+[zephyr-plugins]: https://github.com/socialally/zephyr#plugins
 [mdp]: https://github.com/tmpfs/mdp

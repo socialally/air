@@ -1,6 +1,6 @@
-[![Build Status](https://travis-ci.org/tmpfs/air.svg)](https://travis-ci.org/tmpfs/air)
+[![Build Status](https://travis-ci.org/socialally/air.svg)](https://travis-ci.org/socialally/air)
 [![npm version](http://img.shields.io/npm/v/air.svg)](https://npmjs.org/package/air)
-[![Coverage Status](https://coveralls.io/repos/tmpfs/air/badge.svg?branch=master&service=github&v=2)](https://coveralls.io/github/tmpfs/air?branch=master)
+[![Coverage Status](https://coveralls.io/repos/socialally/air/badge.svg?branch=master&service=github&v=2)](https://coveralls.io/github/socialally/air?branch=master)
 
 Lightweight, modular DOM library.
 
